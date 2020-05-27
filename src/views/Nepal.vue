@@ -1,8 +1,8 @@
 <template>
-  <div class="nepal">
+  <div class="grey lighten-3 nepal" >
     <h1 class="subheading grey--text" >Nepal</h1>
 
-    <v-container class="my-5">
+    <v-container class="grey lighten-4 my-5">
       <v-row justify="center">
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=totc_value color="red">
@@ -32,27 +32,27 @@
 
       <v-row justify="center">
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
-          <v-card outlined color="brown darken-3" class="blue-grey--text darken-4 text-center mt-1">
-            <span>{{stats.tested_total}}</span>
-            <h3 class="blue-grey--text darken-4 text-center mt-5">Total Tested</h3>
+          <v-card shaped raised color="deep-orange lighten-2">
+            <span class="white--text display-1">{{stats.tested_total}}</span>
+            <h3 class="grey black--text text-center mt-4">Total Tested</h3>
           </v-card>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
-          <v-card outlined color="brown darken-3" class="blue-grey--text darken-4 text-center mt-1">
-            <span>{{stats.quarantined}}</span>
-            <h3 class="blue-grey--text darken-4 text-center mt-5">Quarantined</h3>
+          <v-card shaped raised color="pink lighten-2">
+            <span class="white--text display-1">{{stats.quarantined}}</span>
+            <h3 class="grey black--text text-center mt-4">Quarantined</h3>
           </v-card>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
-          <v-card outlined color="brown darken-3" class="blue-grey--text darken-4 text-center mt-1">
-            <span>{{stats.tested_rdt}} GMT</span>
-            <h3 class="blue-grey--text darken-4 text-center mt-5">RDT Tested</h3>
+          <v-card shaped raised color="indigo lighten-2">
+            <span class="white--text display-1">{{stats.tested_rdt}}</span>
+            <h3 class="grey black--text text-center mt-4">RDT Tested</h3>
           </v-card>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
-          <v-card outlined color="brown darken-3" class="blue-grey--text darken-4 text-center mt-1">
-            <span>{{stats.pending_result}}</span>
-            <h3 class="blue-grey--text darken-4 text-center mt-5">Pending Result</h3>
+          <v-card shaped raised color="blue lighten-2" >
+            <span class="white--text display-1">{{stats.pending_result}}</span>
+            <h3 class="grey black--text text-center mt-4">Pending Result</h3>
           </v-card>
         </v-col>
       </v-row>
@@ -76,16 +76,22 @@
           <h3 class="blue-grey--text darken-4 text-center mt-5">Time</h3>
         </v-col>
       </v-row>
+      
     </v-container>
     <v-divider></v-divider>
+
+    <Chart />
     
   </div>
 </template>
 
 <script>
-// @ is an alias to /srcS
+import Chart from '@/components/Chart'
 
 export default {
+  components: {
+    Chart
+  },
   data() {
     return{
       infos: [

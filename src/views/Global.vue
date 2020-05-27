@@ -1,8 +1,8 @@
 <template>
-  <div class="global">
+  <div class="global grey lighten-3">
     <h1 class="subheading grey--text">Global</h1>
     
-    <v-container class="my-2">
+    <v-container class="grey lighten-4 my-2">
       <v-row justify="center">
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=totc_value color="deep-orange darken-1">
@@ -46,8 +46,7 @@
     <h1 class="subheading grey--text">Stats</h1>
 
     <v-container class="my-3" grey lighten-3>
-      <!-- <h3 class="grey--text">Sort by:</h3>
-      <input type="text" v-model="received" placeholder="Search Country"> -->
+      
       <v-row>
         <v-col>
           <h3 class="grey--text">
