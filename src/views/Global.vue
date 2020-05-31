@@ -186,45 +186,47 @@
         </v-row>
 
       </v-card>
+      <v-container class="table-stat">
+        <v-card v-for="country in filteredStats" :key="country.Country" justify="center" class="text-center" hover>
 
-      <v-card v-for="country in filteredStats" :key="country.Country" justify="center" class="text-center" hover>
+          <v-row >
 
-        <v-row >
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.Country}}</div>
+            </v-col>
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.TotalConfirmed}}</div>
+            </v-col>
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.NewConfirmed}}</div>
+            </v-col>
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.TotalRecovered}}</div>
+            </v-col>
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.NewRecovered}}</div>
+            </v-col>
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.TotalDeaths}}</div>
+            </v-col>
+            <v-col xs12 sm6>
+              <div class="caption stat_content--text">{{country.NewDeaths}}</div>
+            </v-col>
 
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.Country}}</div>
-          </v-col>
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.TotalConfirmed}}</div>
-          </v-col>
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.NewConfirmed}}</div>
-          </v-col>
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.TotalRecovered}}</div>
-          </v-col>
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.NewRecovered}}</div>
-          </v-col>
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.TotalDeaths}}</div>
-          </v-col>
-          <v-col xs12 sm6>
-            <div class="caption stat_content--text">{{country.NewDeaths}}</div>
-          </v-col>
+          </v-row>
 
-        </v-row>
+          <v-divider></v-divider>
 
-        <v-divider></v-divider>
-
-      </v-card>
+        </v-card>
+      </v-container>
+      
     </v-container>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
+import axios from 'axios'
 
 export default {
 data() {
@@ -244,13 +246,13 @@ data() {
     },
 
   },
-  created() {
-    this.$http.get(process.env.VUE_APP_GlobalStatAPI).then(function(data) {
-      // console.log(data);
-      this.statsGlobal = data.body.Global;
-      this.statsGlobalCountries = data.body.Countries;
-    });
-  },
+  // created() {
+  //   this.$http.get(process.env.VUE_APP_GlobalStatAPI).then(function(data) {
+  //     // console.log(data);
+  //     this.statsGlobal = data.body.Global;
+  //     this.statsGlobalCountries = data.body.Countries;
+  //   });
+  // },
   computed:{
     filteredStats: function(){
       return this.statsGlobalCountries.filter((stat) => {
@@ -275,7 +277,20 @@ data() {
     newd_value: function(){
       return Math.floor(Math.random() * (10-5+1)+5)
     },
+  },
+  mounted() {
+    axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
+      this.statsGlobal = res.data.Global;
+      this.statsGlobalCountries = res.data.Countries;
+    })
   }  
 
 }
 </script>
+<style>
+.table-stat{
+  overflow-y: scroll;
+  height: 800px;
+}
+
+</style>

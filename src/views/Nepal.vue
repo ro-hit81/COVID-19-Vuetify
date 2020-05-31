@@ -79,18 +79,16 @@
       
     </v-container>
     <v-divider></v-divider>
-
-    <Chart />
     
   </div>
 </template>
 
 <script>
-import Chart from '@/components/Chart'
+import axios from 'axios'
 
 export default {
   components: {
-    Chart
+
   },
   data() {
     return{
@@ -108,12 +106,6 @@ export default {
   methods: {
     
   },
-  created() {
-    this.$http.get(process.env.VUE_APP_NepalStatAPI).then(function(data) {
-      // console.log(data.body);
-      this.stats = data.body;
-    });
-  },
   computed :{
     totc_value: function(){
       return Math.floor(Math.random() * (90-85+1)+85)
@@ -127,6 +119,12 @@ export default {
     death_value: function(){
       return Math.floor(Math.random() * (10-5+1)+5)
     },
+  },
+  mounted: function() {
+    axios.get(process.env.VUE_APP_NepalStatAPI).then((res) => {
+      console.log(res)
+      this.stats = res.data;
+    })
   }
     
 }
