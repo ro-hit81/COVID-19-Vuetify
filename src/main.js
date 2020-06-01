@@ -7,14 +7,6 @@ import vuetify from './plugins/vuetify'
 
 Vue.config.productionTip = false
 
-Vue.filter('date-ext', function(value){
-  return value.slice(0, 10)
-});
-
-Vue.filter('time-ext', function(value){
-  return value.slice(11, 19)
-});
-
 new Vue({
   router,
   store,

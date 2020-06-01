@@ -21,6 +21,18 @@ export default new Vuex.Store({
       state.country_stats = country_stats
     },
   },
+  getters:{
+    dateConvert: state => {
+      const nepal_date = state.nepal_stats.updated_at.slice(0,10)
+      const nepal_time = state.nepal_stats.updated_at.slice(11,19)
+      return {nepal_date, nepal_time};
+    },
+    globalDateConvert: state => {
+      const global_date = state.country_stats[0].Date.slice(0,10)
+      const global_time = state.country_stats[0].Date.slice(11,19)
+      return {global_date, global_time}
+    }
+  },
   actions: {
     loadNepalStats({commit}) {
       axios.get(process.env.VUE_APP_NepalStatAPI).then((res) => {
@@ -32,21 +44,16 @@ export default new Vuex.Store({
     },
     loadGlobalStats({commit}) {
       axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
-        console.log(res)
         const global_stats = res.data.Global
+        const country_stats = res.data.Countries
+
         commit('SET_GLOBAL_STATS', global_stats);
+        commit('SET_COUNTRY_STATS', country_stats);
+
       }).catch(error => {
         throw new Error(`API ${error}`)
       })
     },
-    loadCountryStats({commit}) {
-      axios.get(process.env.VUE_APP_GlobalStatAPI).then( (res) => {
-        const country_stats = res.data.Countries
-        commit('SET_COUNTRY_STATS', country_stats)
-      }).catch(error => {
-        throw new Error(`API ${error}`)
-      })
-    }
   },
   modules: {
   }
