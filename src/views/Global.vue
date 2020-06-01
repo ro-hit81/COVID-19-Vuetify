@@ -6,37 +6,37 @@
       <v-row justify="center">
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=totc_value color="deep-orange darken-1">
-            <h2>{{statsGlobal.TotalConfirmed}}</h2>
+            <h2>{{global_stats.TotalConfirmed}}</h2>
           </v-progress-circular>
           <h3 class="blue-grey--text darken-4 text-center mt-5">Total Confirmed Case</h3>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=newc_value color="pink lighten-1">
-            <h2>{{statsGlobal.NewConfirmed}}</h2>
+            <h2>{{global_stats.NewConfirmed}}</h2>
           </v-progress-circular>
           <h3 class="blue-grey--text darken-4 text-center mt-5">New Confirmed Case</h3>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=totr_value color="light-green accent-3">
-            <h2>{{statsGlobal.TotalRecovered}}</h2>
+            <h2>{{global_stats.TotalRecovered}}</h2>
           </v-progress-circular>
           <h3 class="blue-grey--text darken-4 text-center mt-5">Total Recovered Case</h3>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=newr_value color="purple lighten-1">
-            <h2>{{statsGlobal.NewRecovered}}</h2>
+            <h2>{{global_stats.NewRecovered}}</h2>
           </v-progress-circular>
           <h3 class="blue-grey--text darken-4 text-center mt-5">New Recovered Case</h3>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=totd_value color="blue darken-2">
-            <h2>{{statsGlobal.TotalDeaths}}</h2>
+            <h2>{{global_stats.TotalDeaths}}</h2>
           </v-progress-circular>
           <h3 class="blue-grey--text darken-4 text-center mt-5">Total Death Case</h3>
         </v-col>
         <v-col cols="12" xs="12" sm="6" md="6" lg="4" class="text-center">
           <v-progress-circular :rotate="360" :size="180" :width="40" :value=newd_value color="light-blue darken-1">
-            <h2>{{statsGlobal.NewDeaths}}</h2>
+            <h2>{{global_stats.NewDeaths}}</h2>
           </v-progress-circular>
           <h3 class="blue-grey--text darken-4 text-center mt-5"> NewDeath Case</h3>
         </v-col>
@@ -56,13 +56,13 @@
 
         <v-col class="text-center">
           <v-btn outlined block small color="success" class="blue-grey--text darken-4 text-center mt-5">
-            <span>{{statsGlobalCountries[0].Date | date-ext}}</span>
+            <span>{{country_stats[0].Date | date-ext}}</span>
           </v-btn>
         </v-col>
 
         <v-col class="text-center">
           <v-btn outlined block small color="success" class="blue-grey--text darken-4 text-center mt-5">
-            <span>{{statsGlobalCountries[0].Date | time-ext}} GMT</span>
+            <span>{{country_stats[0].Date | time-ext}} GMT</span>
           </v-btn>
         </v-col>
         <v-col>
@@ -226,23 +226,24 @@
 
 <script>
 // @ is an alias to /src
-import axios from 'axios'
+// import axios from 'axios'
+import { mapState } from 'vuex'
 
 export default {
 data() {
   return{
-    statsGlobal: [
+    // statsGlobal: [
         
-      ],
-    statsGlobalCountries : [
+    //   ],
+    // statsGlobalCountries : [
 
-    ],
+    // ],
     received: '',
     }
   },
   methods:{
     sortBy(prop) {
-      this.statsGlobalCountries.sort((a,b) => a[prop] > b[prop] ? -1:1)
+      this.country_stats.sort((a,b) => a[prop] > b[prop] ? -1:1)
     },
 
   },
@@ -254,8 +255,12 @@ data() {
   //   });
   // },
   computed:{
+    ...mapState([
+      'global_stats',
+      'country_stats'
+    ]),
     filteredStats: function(){
-      return this.statsGlobalCountries.filter((stat) => {
+      return this.country_stats.filter((stat) => {
         return stat.Country.match(this.received);
       });
     },
@@ -279,10 +284,12 @@ data() {
     },
   },
   mounted() {
-    axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
-      this.statsGlobal = res.data.Global;
-      this.statsGlobalCountries = res.data.Countries;
-    })
+    // axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
+    //   this.statsGlobal = res.data.Global;
+    //   this.statsGlobalCountries = res.data.Countries;
+    // })
+    this.$store.dispatch('loadGlobalStats');
+    this.$store.dispatch('loadCountryStats');
   }  
 
 }
