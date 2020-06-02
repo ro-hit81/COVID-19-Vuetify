@@ -9,6 +9,7 @@ export default new Vuex.Store({
     nepal_stats: [],
     global_stats: [],
     country_stats:[],
+    date:''
   },
   mutations: {
     SET_STATS (state, nepal_stats) {
@@ -20,16 +21,21 @@ export default new Vuex.Store({
     SET_COUNTRY_STATS (state, country_stats) {
       state.country_stats = country_stats
     },
+    SET_DATE (state, date) {
+      state.date = date
+    }
   },
   getters:{
     dateConvert: state => {
-      const nepal_date = state.nepal_stats.updated_at.slice(0,10)
-      const nepal_time = state.nepal_stats.updated_at.slice(11,19)
+      let updated_at = state.nepal_stats.updated_at
+      const nepal_date = updated_at && updated_at.slice(0,10)
+      const nepal_time = updated_at && updated_at.slice(11,19)
       return {nepal_date, nepal_time};
     },
     globalDateConvert: state => {
-      const global_date = state.country_stats[0].Date.slice(0,10)
-      const global_time = state.country_stats[0].Date.slice(11,19)
+      let date = state.date 
+      const global_date = date && date.slice(0,10)
+      const global_time = date && date.slice(11,19)
       return {global_date, global_time}
     }
   },
@@ -46,10 +52,10 @@ export default new Vuex.Store({
       axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
         const global_stats = res.data.Global
         const country_stats = res.data.Countries
-
+        const date = res.data.Date
         commit('SET_GLOBAL_STATS', global_stats);
         commit('SET_COUNTRY_STATS', country_stats);
-
+        commit('SET_DATE', date)
       }).catch(error => {
         throw new Error(`API ${error}`)
       })

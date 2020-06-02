@@ -1,5 +1,5 @@
 <template>
-    <v-container class="my-3" grey lighten-3>
+    <v-container class="my-3 grey lighten-4 my-2">
       
         <v-row>
             <v-col>
@@ -7,17 +7,27 @@
                     <span>Sort by:</span>
                 </h3>
             </v-col>
-            <!-- <v-col class="text-center">
-                <v-btn outlined block small color="success" class="blue-grey--text darken-4 text-center mt-5">
-                    <span>{{globalDateConvert.global_date}}</span>
-                </v-btn>
+            <v-col class="text-center">
+                <v-tooltip top>
+                    <template v-slot:activator = '{on}'>
+                        <v-btn outlined block small color="success" class="blue-grey--text darken-4 text-center mt-5" v-on="on">
+                            <span>{{globalDateConvert.global_date}}</span>
+                        </v-btn>
+                    </template>
+                    <span>List is updated at this date !!!</span>
+                </v-tooltip>
             </v-col>
 
             <v-col class="text-center">
-                <v-btn outlined block small color="success" class="blue-grey--text darken-4 text-center mt-5">
-                    <span>{{globalDateConvert.global_time}} GMT</span>
-                </v-btn>
-            </v-col> -->
+                <v-tooltip top>
+                    <template v-slot:activator = '{on}'>
+                        <v-btn outlined block small color="success" class="blue-grey--text darken-4 text-center mt-5" v-on="on">
+                            <span>{{globalDateConvert.global_time}} GMT</span>
+                        </v-btn>
+                     </template>
+                    <span>List is updated at this date !!!</span>
+                </v-tooltip>
+            </v-col>
             <v-col>
                 <v-text-field label="Search Country" v-model="received" append-icon="mdi-flag"></v-text-field>
             </v-col>
@@ -103,7 +113,7 @@
         </v-row>
 
         <v-card>
-            <v-row class="text-center pa-3">
+            <v-row class="text-center pa-3 grey lighten-4 my-3">
                 <v-col>
                     <div class="caption stat_title--text">Country Name</div><br>
                 </v-col>
@@ -196,6 +206,6 @@ export default {
 <style>
 .table-stat{
   overflow-y: scroll;
-  height: 800px;
+  height: 500px;
 }
 </style>

@@ -58,7 +58,7 @@
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
           <v-tooltip top>
             <template v-slot:activator="{ on }">
-              <v-btn outlined color="brown darken-3" class="blue-grey--text darken-4 text-center mt-5" v-on="on">
+              <v-btn outlined color="success" class="blue-grey--text darken-4 text-center mt-5" v-on="on">
                 <span>{{dateConvert.nepal_date}}</span>
               </v-btn>
             </template>
@@ -68,15 +68,15 @@
         </v-col>
 
         <v-col cols="12" xs="12" sm="6" md="6" lg="3" class="text-center">
-          <!-- <v-tooltip top> -->
-            <!-- <template v-slot:activator="{ on }"> -->
-              <v-btn outlined color="brown darken-3" class="blue-grey--text darken-4 text-center mt-5">
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-btn outlined color="success" class="blue-grey--text darken-4 text-center mt-5" v-on="on">
                 <span>{{dateConvert.nepal_time}} GMT</span>
               </v-btn>
               <h3 class="blue-grey--text darken-4 text-center mt-5">Time</h3>  
-            <!-- </template> -->
-            <!-- <span>Stat is updated at this time !!!</span> -->
-          <!-- </v-tooltip> -->
+            </template>
+            <span>Stat is updated at this time !!!</span>
+          </v-tooltip>
         </v-col>
       </v-row>
       
