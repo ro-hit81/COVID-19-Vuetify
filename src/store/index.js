@@ -1,15 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+// import NepalData from '@/assets/Nepal.json'
 
 Vue.use(Vuex, axios)
 
 export default new Vuex.Store({
   state: {
+    date:'',
     nepal_stats: [],
     global_stats: [],
     country_stats:[],
-    date:''
+    // nepal_data: NepalData,
+    // District: [],
+    
   },
   mutations: {
     SET_STATS (state, nepal_stats) {
@@ -37,7 +41,11 @@ export default new Vuex.Store({
       const global_date = date && date.slice(0,10)
       const global_time = date && date.slice(11,19)
       return {global_date, global_time}
-    }
+    },
+    // districts: state => {
+    //   const Districts = state.nepal_data.features.properties.DISTRICT
+    //   return console.log(Districts)
+    // }
   },
   actions: {
     loadNepalStats({commit}) {
