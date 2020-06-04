@@ -18,7 +18,6 @@
                 <span class="blue-grey--text">{{NepalData.properties.PR_NAME}}</span>
               </div>
             </v-expansion-panel-content>
-
           </v-expansion-panel>
         </v-expansion-panels>
       </v-col>
@@ -30,6 +29,7 @@
           <l-map
             :zoom= "zoom"
             :center= "center"
+            style="z-index:0"
             @update:zoom= "zoomUpdated"
             @update:center= "centerUpdated"
           >
@@ -58,7 +58,6 @@ export default {
   data (){
     return {
       NepalDatas: [],
-
       zoom: 7,
       center: L.latLng(28.197842, 84.528289),
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -80,6 +79,9 @@ export default {
     this.NepalDatas = Data.features
     this.geojson = Data
     // console.log(this.NepalDatas)
+  },
+  computed: {
+    
   }
 }
 </script>
