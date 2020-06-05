@@ -34,8 +34,17 @@
             @update:center= "centerUpdated"
           >
             <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <!-- <l-marker :lat-lng="marker"></l-marker> -->
-            <l-geo-json :geojson="geojson"></l-geo-json>
+            <l-marker-cluster
+                            @clusterclick="click()"
+                            >
+              <l-marker 
+                    :key="CoronaData.id" 
+                    v-for="CoronaData in CoronaDatas" 
+                    :lat-lng="latLng(CoronaData.point.coordinates[1], CoronaData.point.coordinates[0])"
+                    >
+                    </l-marker>
+            </l-marker-cluster>
+              <l-geo-json :geojson="geojson" :options-style="styleFunction"></l-geo-json>
           </l-map>
         </div>
       </v-col>
@@ -44,23 +53,27 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import axios from 'axios'
 import Data from '@/assets/Nepal.json'
 import L from 'leaflet'
-import { LMap, LTileLayer, LGeoJson } from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LMarker } from 'vue2-leaflet';
+import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 
 export default {
   components: {
     LMap,
     LTileLayer,
     LGeoJson,
+    LMarker,
+    'l-marker-cluster': Vue2LeafletMarkerCluster
   },
   data (){
     return {
       NepalDatas: [],
+      CoronaDatas:[],
       zoom: 7,
       center: L.latLng(28.197842, 84.528289),
-      url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      url: 'http://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       geojson: null,
@@ -73,16 +86,37 @@ export default {
     },
     centerUpdated(center) {
       return this.center = center
+    },
+    latLng: function(lat, lng){
+      return L.latLng(lat, lng)
+    },
+    click: function() {
+      alert('Clicked')
     }
   },
   created() {
     this.NepalDatas = Data.features
     this.geojson = Data
     // console.log(this.NepalDatas)
+    axios.get('https://data.nepalcorona.info/api/v1/covid').then((res)=> {
+      this.CoronaDatas = res.data
+      // console.log(this.CoronaDatas[0].point.coordinates)
+    })
   },
   computed: {
-    
-  }
+    styleFunction() {
+      return () => {
+        return {
+          weight: 1,
+          color: "#42A5F5",
+          opacity: 1,
+          fillColor: "none",
+          fillOpacity: 0.7
+        };
+      }
+    },
+  },
+
 }
 </script>
 

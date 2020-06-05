@@ -12,8 +12,8 @@ Vue.config.productionTip = false
 
 delete Icon.Default.prototype._getIconUrl;
 Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  iconRetinaUrl: require('@/assets/corona_case.png'),
+  iconUrl: require('@/assets/corona_case.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
