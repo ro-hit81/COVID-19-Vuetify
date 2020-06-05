@@ -23,8 +23,8 @@
       </v-col>
 
 
-      <v-col cols="9" class="text-center">
-        <h3>Map</h3>
+      <v-col cols="9">
+        <h3 class="text-center">Map</h3>
         <div class="map mt-3">
           <l-map
             :zoom= "zoom"
@@ -33,10 +33,16 @@
             @update:zoom= "zoomUpdated"
             @update:center= "centerUpdated"
           >
-            <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
-            <l-marker-cluster
-                            @clusterclick="click()"
-                            >
+          <l-control-layers position="topright"/>
+            <l-tile-layer 
+                      :key="tileProvider.name"
+                      v-for="tileProvider in tileProviders" 
+                      :name="tileProvider.name" 
+                      :visible="tileProvider.visible" 
+                      :url="tileProvider.url"
+                      :attribution="tileProvider.attribution" 
+                      layer-type="base" />
+            <l-marker-cluster>
               <l-marker 
                     :key="CoronaData.id" 
                     v-for="CoronaData in CoronaDatas" 
@@ -44,7 +50,7 @@
                     >
                     </l-marker>
             </l-marker-cluster>
-              <l-geo-json :geojson="geojson" :options-style="styleFunction"></l-geo-json>
+              <l-geo-json :geojson="geojson" :options-style="styleFunction"/>
           </l-map>
         </div>
       </v-col>
@@ -56,8 +62,9 @@
 import axios from 'axios'
 import Data from '@/assets/Nepal.json'
 import L from 'leaflet'
-import { LMap, LTileLayer, LGeoJson, LMarker } from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LMarker, LControlLayers } from 'vue2-leaflet';
 import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+
 
 export default {
   components: {
@@ -65,6 +72,7 @@ export default {
     LTileLayer,
     LGeoJson,
     LMarker,
+    LControlLayers,
     'l-marker-cluster': Vue2LeafletMarkerCluster
   },
   data (){
@@ -73,9 +81,30 @@ export default {
       CoronaDatas:[],
       zoom: 7,
       center: L.latLng(28.197842, 84.528289),
-      url: 'http://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png',
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+      tileProviders: [
+        {
+          name: 'Stadia Alidade Smooth [Dark]',
+          visible: true,
+          attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors',
+          url: 'https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png',
+        },
+        {
+          name: 'CartoDb Positron [Light]',
+          visible: false,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          url: 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',
+        },{
+          name: 'OpenStreetMap',
+          visible: false,
+          attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+          url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        },{
+          name: 'Spinal Map',
+          visible: false,
+          attribution: '',
+          url: 'https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey={{INSERT_YOUR_API_KEY}}',
+        },
+      ],
       geojson: null,
 
     }
@@ -89,10 +118,7 @@ export default {
     },
     latLng: function(lat, lng){
       return L.latLng(lat, lng)
-    },
-    click: function() {
-      alert('Clicked')
-    }
+},
   },
   created() {
     this.NepalDatas = Data.features
@@ -121,6 +147,8 @@ export default {
 </script>
 
 <style>
+@import "~leaflet.markercluster/dist/MarkerCluster.css";
+@import "~leaflet.markercluster/dist/MarkerCluster.Default.css";
   .districtList{
     max-height: 75vh;
     overflow-y: scroll;
