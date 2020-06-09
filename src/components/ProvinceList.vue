@@ -4,7 +4,7 @@
                     v-for="(Province, index) in Provinces" 
                     :key="index" 
                     class="grey lighten-3" 
-                    @click="clicked(NepalData)" 
+                    @click="clicked(Province)" 
                     >
         <v-expansion-panel-header class="mx-auto">
             {{Province.properties.PR_NAME}}
@@ -32,9 +32,9 @@ export default {
         }
     },
     methods: {
-    //   clicked: function(NepalData) {
-    //     this.$root.$emit('clicked-district', NepalData)
-    //   },
+      clicked: function(Province) {
+        this.$root.$emit('clicked-province', Province)
+      },
     },
     created(){
         this.Provinces = Data.features

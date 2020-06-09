@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import Data from '@/assets/Nepal.json'
+import Data from '@/assets/District.json'
 
 export default {
     data(){

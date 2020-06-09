@@ -26,7 +26,8 @@
                     >
                     </l-marker>
             </l-marker-cluster>
-              <l-geo-json :geojson="geojson" :options-style="styleFunction"/>
+              <l-geo-json :geojson="districtJson" :options-style="districtStyleFunction"/>
+              <l-geo-json :geojson="provinceJson" :options-style="provinceStyleFunction"/>
           </l-map>
         </div>
         <v-row class="text-center overline">
@@ -45,7 +46,9 @@
 <script>
 
 import axios from 'axios'
-import Data from '@/assets/Nepal.json'
+import DistrictData from '@/assets/District.json'
+import ProvinceData from '@/assets/Province.json'
+
 
 // Importing leaflet & its library
 
@@ -89,7 +92,8 @@ export default {
                 url: 'https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=8398434e563646f2b6d13072a43f1f1d',
                 },
             ],
-            geojson: null,
+            districtJson: null,
+            provinceJson: null,
         }
     },
     components: {
@@ -112,21 +116,31 @@ export default {
         },
     },
     computed: {
-        styleFunction() {
+        districtStyleFunction() {
             return () => {
                 return {
-                    weight: 1,
-                    color: "#42A5F5",
+                    weight: 0.5,
+                    color: "#FFE0B2",
                     opacity: 1,
                     fillColor: "none",
-                    fillOpacity: 0.7
+                    fillOpacity: 0
                 };
             }
         },
+        provinceStyleFunction() {
+            return () => {
+                return {
+                    weight: 1,
+                    color: "#FFA726",
+                    fillColor: "none",
+                    fillOpacity:0
+                }
+            }
+        }
     },
     created() {
-        this.geojson = Data
-        // console.log(this.INSERT_YOUR_API_KEY)
+        this.districtJson = DistrictData
+        this.provinceJson = ProvinceData
         axios.get('https://data.nepalcorona.info/api/v1/covid').then((res)=> {
             this.CoronaDatas = res.data
         })
@@ -134,6 +148,16 @@ export default {
     mounted() {
         this.$root.$on('clicked-district', (NepalData) => {
             let polygon = L.polygon(NepalData.geometry.coordinates);
+            let bounds = polygon.getBounds();
+            let southWest = bounds.getSouthWest();
+            let northEast = bounds.getNorthEast();
+            let cSouthWest = L.latLng(southWest.lng, southWest.lat);
+            let cNortEast = L.latLng(northEast.lng, northEast.lat);
+            let newBounds = L.latLngBounds(cSouthWest, cNortEast);
+            this.bounds = newBounds
+        });
+         this.$root.$on('clicked-province', (ProvinceData) => {
+            let polygon = L.polygon(ProvinceData.geometry.coordinates);
             let bounds = polygon.getBounds();
             let southWest = bounds.getSouthWest();
             let northEast = bounds.getNorthEast();
