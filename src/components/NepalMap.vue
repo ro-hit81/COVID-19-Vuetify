@@ -1,10 +1,10 @@
 <template>
-    <v-col cols="9">
-        <h3 class="text-center">Map</h3>
+    <v-col cols="9">      
         <div class="map mt-3">
           <l-map
             :zoom= "zoom"
             :center= "center"
+            :bounds= "bounds"
             style="z-index:0"
             @update:zoom= "zoomUpdated"
             @update:center= "centerUpdated"
@@ -29,6 +29,16 @@
               <l-geo-json :geojson="geojson" :options-style="styleFunction"/>
           </l-map>
         </div>
+        <v-row class="text-center overline">
+            <v-col>
+                <span class="font-weight-bold grey--text"> Current Zoom Level:</span>
+                <span class="font-weight-medium"> {{zoom}}</span>
+            </v-col>
+            <v-col>
+                <span class="font-weight-bold grey--text">Map Center: </span>
+                <span class="font-weight-medium">{{center.lat}}&deg;, {{center.lng}}&deg;</span>
+            </v-col>
+        </v-row>
       </v-col>
 </template>
 
@@ -52,6 +62,7 @@ export default {
             CoronaDatas:[],
             zoom: 7,
             center: L.latLng(28.197842, 84.528289),
+            bounds: [],
             tileProviders: [
                 {
                 name: 'Stadia Alidade Smooth [Dark]',
@@ -75,7 +86,7 @@ export default {
                 name: 'Spinal Map',
                 visible: false,
                 attribution: '',
-                url: 'https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey={{INSERT_YOUR_API_KEY}}',
+                url: 'https://tile.thunderforest.com/spinal-map/{z}/{x}/{y}.png?apikey=8398434e563646f2b6d13072a43f1f1d',
                 },
             ],
             geojson: null,
@@ -115,11 +126,23 @@ export default {
     },
     created() {
         this.geojson = Data
+        // console.log(this.INSERT_YOUR_API_KEY)
         axios.get('https://data.nepalcorona.info/api/v1/covid').then((res)=> {
             this.CoronaDatas = res.data
         })
     },
-
+    mounted() {
+        this.$root.$on('clicked-district', (NepalData) => {
+            let polygon = L.polygon(NepalData.geometry.coordinates);
+            let bounds = polygon.getBounds();
+            let southWest = bounds.getSouthWest();
+            let northEast = bounds.getNorthEast();
+            let cSouthWest = L.latLng(southWest.lng, southWest.lat);
+            let cNortEast = L.latLng(northEast.lng, northEast.lat);
+            let newBounds = L.latLngBounds(cSouthWest, cNortEast);
+            this.bounds = newBounds
+        });
+    },
 }
 </script>
 

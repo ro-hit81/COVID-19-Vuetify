@@ -2,8 +2,7 @@
   <div class="maps">
     <h1 class="subheading grey--text">Maps</h1>
     <v-row>
-
-      <DistrictList />
+      <NepalList />
 
       <NepalMap />
       
@@ -12,12 +11,12 @@
 </template>
 
 <script>
-import DistrictList from '@/components/DistrictList'
+import NepalList from '@/components/NepalList'
 import NepalMap from '@/components/NepalMap'
 
 export default {
   components: {
-    DistrictList: DistrictList,
+    NepalList: NepalList,
     NepalMap: NepalMap
   },
 

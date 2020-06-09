@@ -1,8 +1,11 @@
 <template>
-    <v-col cols="3" class="text-center">
-        <h3>District List</h3>
         <v-expansion-panels inset focusable hover class="districtList mt-3">
-          <v-expansion-panel v-for="NepalData in NepalDatas" :key="NepalData.properties.OBJECTID" class="grey lighten-3">
+          <v-expansion-panel 
+                        v-for="(NepalData, index) in NepalDatas" 
+                        :key="index" 
+                        class="grey lighten-3" 
+                        @click="clicked(NepalData)" 
+                        >
             <v-expansion-panel-header class="mx-auto">
               {{NepalData.properties.DISTRICT}}
               <template v-slot:actions>
@@ -17,7 +20,6 @@
             </v-expansion-panel-content>
           </v-expansion-panel>
         </v-expansion-panels>
-      </v-col>
 </template>
 
 <script>
@@ -29,9 +31,14 @@ export default {
             NepalDatas: [],
         }
     },
+    methods: {
+      clicked: function(NepalData) {
+        this.$root.$emit('clicked-district', NepalData)
+      },
+    },
     created(){
         this.NepalDatas = Data.features
-    } 
+    },
 }
 </script>
 
