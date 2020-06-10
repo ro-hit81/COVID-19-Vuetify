@@ -4,6 +4,9 @@ import Dashboard from '../views/Dashboard'
 import Global from '../views/Global'
 import Nepal from '../views/Nepal'
 import Maps from '../views/Maps'
+import Timeline from '../views/Timeline'
+import Myths from '../views/Myths'
+import Faqs from '../views/Faqs'
 
 
 Vue.use(VueRouter)
@@ -28,7 +31,22 @@ Vue.use(VueRouter)
     path: '/maps',
     name: 'maps',
     component: Maps
-  }
+  },
+  {
+    path: '/timeline',
+    name: 'timeline',
+    component: Timeline
+  },
+  {
+    path: '/myths',
+    name: 'myths',
+    component: Myths
+  },
+  {
+    path: '/faqs',
+    name: 'faqs',
+    component: Faqs
+  },
 ]
 
 const router = new VueRouter({

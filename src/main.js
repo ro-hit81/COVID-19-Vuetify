@@ -17,6 +17,11 @@ Icon.Default.mergeOptions({
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
 
+Vue.filter('date-filter', function(value) {
+  const filtered_date = value && value.slice(0,10)
+  return(filtered_date)
+})
+
 new Vue({
   router,
   store,

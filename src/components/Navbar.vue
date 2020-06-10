@@ -66,6 +66,10 @@ export default {
                 { icon: 'google-earth', text: 'Global Stats',   route: '/global' },
                 { icon: 'folder',       text: 'Nepal Stats',    route: '/nepal' },
                 { icon: 'map',          text: 'Maps',            route: '/maps' },
+                { icon: 'chart-timeline-variant',          text: 'Timeline',            route: '/timeline' },
+                { icon: 'emoticon-confused',          text: 'Myths',            route: '/myths' },
+                { icon: 'map-marker-question',          text: 'FAQs',            route: '/faqs' },
+
             ]
         }
     }
