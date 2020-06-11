@@ -53,7 +53,7 @@
             </v-row>
         </v-container>
         <v-container mx-auto grey lighten-3 class="myths">
-            <v-card flat hover v-for="Mythdata in filteredMythDatas" :key="Mythdata._id" height="160px" @click.stop="dialog = true" @click="clicked(Mythdata)">
+            <v-card flat hover v-for="Mythdata in filteredMythDatas" :key="Mythdata._id" height="160px" @click.stop="dialog = true" @click="clicked(Mythdata); visible= false">
                 <v-row :class="`pa-3 myth ${Mythdata.source_name}`">
                     <v-col col="1" xs="1" sm="1" md="1" lg="1" xl="1">
                         <v-responsive class="pt-7" justify="center" align="center">
@@ -67,7 +67,7 @@
                         <div class="body-2">{{Mythdata.myth}}</div>
                     </v-col>
                     <v-col col="5" xs="5" sm="5" md="5" lg="5" xl="5">
-                        <div class="caption grey--text text-center">Reality</div>
+                        <div class="caption grey--text text-justify">Reality</div>
                         <div class="body-2">{{Mythdata.reality}}</div>
                     </v-col>
                     <v-col col="2" xs="2" sm="2" md="2" lg="2" xl="2">
@@ -82,14 +82,14 @@
                 <v-divider></v-divider>
             </v-card>
             <v-dialog v-model="dialog" max-width="600" class="grey">
-                <v-card class="mx-auto" dark shaped>
+                <v-card class="mx-auto" dark shaped >
                     <v-responsive align="center">
-                            <v-avatar size="300" class="mt-4" tile>
+                            <v-avatar size="300" class="mt-4 dialog" tile>
                                 <img :src="dialogData.image_url" alt="Myth Image">
                             </v-avatar>
                         </v-responsive>
                     <v-card-title class="ma-3 body-2 font-weight-bold">
-                        Source: {{dialogData.source_name}}
+                        <span class="font-italic grey--text">Source: {{dialogData.source_name}}</span>
                     </v-card-title>
                     <v-card-subtitle>
                         <span class="font-weight-bold">Myth:</span> {{dialogData.myth}}
@@ -98,23 +98,25 @@
                         <v-btn class="ma-3 blue" small dark ripple rounded :href="dialogData.source_url">
                             Original post
                         </v-btn>
+                        <v-btn class="mx-7 deep-orange lighten-2" small rounded>
+                            Created at: {{dialogData.created_at | date-filter}}
+                        </v-btn>
                         <v-spacer></v-spacer>
                         <v-btn icon @click="visible = !visible">
                             <v-icon>{{ visible ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
                         </v-btn>
                     </v-card-actions>
-                    <v-expand-transition>
+                    <v-fab-transition hide-on-leave>
                         <div v-show="visible">
                             <v-divider></v-divider>
                             <v-card-title class="grey--text font-weight-bold">
                                 Reality:
                             </v-card-title>
-                            <v-card-text class="grey--text">
+                            <v-card-text class="grey--text text-justify">
                                 {{dialogData.reality}}
                             </v-card-text>
-
                         </div>
-                    </v-expand-transition>
+                    </v-fab-transition>
                 </v-card>
             </v-dialog>
         </v-container>
@@ -146,7 +148,7 @@ export default {
         clicked: function(Mythdata) {
             this.dialogData = Mythdata
             console.log(this.dialogData)
-        }
+        },
     },
     computed: {
         filteredMythDatas: function(){
@@ -154,6 +156,7 @@ export default {
                 return data.myth.match(this.received);
             });
         },
+        
     },
 }
 </script>
@@ -203,4 +206,8 @@ export default {
     width: 0;
     height: 0;
 } */
+.v-avatar.dialog{
+    border: 2px solid #757575;
+    border-radius: 20px
+}
 </style>

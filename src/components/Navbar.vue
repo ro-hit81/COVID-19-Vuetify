@@ -53,7 +53,7 @@
 export default {
     data() {
         return{
-            drawer: false,
+            drawer: true,
 
             nav_title: {
                 icon: 'view-dashboard',
