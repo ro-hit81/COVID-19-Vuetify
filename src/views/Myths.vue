@@ -53,7 +53,7 @@
             </v-row>
         </v-container>
         <v-container mx-auto grey lighten-3 class="myths">
-            <v-card flat hover v-for="Mythdata in filteredMythDatas" :key="Mythdata._id" height="160px">
+            <v-card flat hover v-for="Mythdata in filteredMythDatas" :key="Mythdata._id" height="160px" @click.stop="dialog = true" @click="clicked(Mythdata)">
                 <v-row :class="`pa-3 myth ${Mythdata.source_name}`">
                     <v-col col="1" xs="1" sm="1" md="1" lg="1" xl="1">
                         <v-responsive class="pt-7" justify="center" align="center">
@@ -81,6 +81,42 @@
                 </v-row>
                 <v-divider></v-divider>
             </v-card>
+            <v-dialog v-model="dialog" max-width="600" class="grey">
+                <v-card class="mx-auto" dark shaped>
+                    <v-responsive align="center">
+                            <v-avatar size="300" class="mt-4" tile>
+                                <img :src="dialogData.image_url" alt="Myth Image">
+                            </v-avatar>
+                        </v-responsive>
+                    <v-card-title class="ma-3 body-2 font-weight-bold">
+                        Source: {{dialogData.source_name}}
+                    </v-card-title>
+                    <v-card-subtitle>
+                        <span class="font-weight-bold">Myth:</span> {{dialogData.myth}}
+                    </v-card-subtitle>
+                    <v-card-actions>
+                        <v-btn class="ma-3 blue" small dark ripple rounded :href="dialogData.source_url">
+                            Original post
+                        </v-btn>
+                        <v-spacer></v-spacer>
+                        <v-btn icon @click="visible = !visible">
+                            <v-icon>{{ visible ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+                        </v-btn>
+                    </v-card-actions>
+                    <v-expand-transition>
+                        <div v-show="visible">
+                            <v-divider></v-divider>
+                            <v-card-title class="grey--text font-weight-bold">
+                                Reality:
+                            </v-card-title>
+                            <v-card-text class="grey--text">
+                                {{dialogData.reality}}
+                            </v-card-text>
+
+                        </div>
+                    </v-expand-transition>
+                </v-card>
+            </v-dialog>
         </v-container>
 
     </div>
@@ -93,6 +129,9 @@ export default {
         return {
             Mythdatas: [],
             received: '',
+            dialog: false,
+            dialogData: {},
+            visible:false
         }
     },
     created() {
@@ -104,6 +143,10 @@ export default {
         sortBy(prop) {
             this.Mythdatas.sort((a,b) => a[prop] > b[prop] ? 1:-1)
         },
+        clicked: function(Mythdata) {
+            this.dialogData = Mythdata
+            console.log(this.dialogData)
+        }
     },
     computed: {
         filteredMythDatas: function(){
