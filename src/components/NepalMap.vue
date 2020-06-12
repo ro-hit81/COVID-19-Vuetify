@@ -24,10 +24,18 @@
                     v-for="CoronaData in CoronaDatas" 
                     :lat-lng="latLng(CoronaData.point.coordinates[1], CoronaData.point.coordinates[0])"
                     >
+                    <l-icon :icon-size="iconSize" :icon-url="icon"></l-icon>
                     </l-marker>
             </l-marker-cluster>
-              <l-geo-json :geojson="districtJson" :options-style="districtStyleFunction"/>
-              <l-geo-json :geojson="provinceJson" :options-style="provinceStyleFunction"/>
+            <l-control-layers position="bottomright"/>
+            <l-layer-group>
+                 <l-layer-group layer-type="overlay" name="Province" :visible="true">
+                  <l-geo-json :geojson="provinceJson" :options-style="provinceStyleFunction"/>
+                </l-layer-group>
+                <l-layer-group layer-type="overlay" name="District" :visible="true">
+                  <l-geo-json :geojson="districtJson" :options-style="districtStyleFunction"/>
+                </l-layer-group>
+            </l-layer-group>
           </l-map>
         </div>
         <v-row class="text-center overline">
@@ -48,12 +56,13 @@
 import axios from 'axios'
 import DistrictData from '@/assets/District.json'
 import ProvinceData from '@/assets/Province.json'
+import infected_icon from '../assets/infected.png'
 
 
 // Importing leaflet & its library
 
 import L from 'leaflet'
-import { LMap, LTileLayer, LGeoJson, LMarker, LControlLayers } from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LMarker, LControlLayers, LIcon, LLayerGroup} from 'vue2-leaflet';
 
 // Importing MarkerCluster
 
@@ -66,6 +75,8 @@ export default {
             zoom: 7,
             center: L.latLng(28.197842, 84.528289),
             bounds: [],
+            icon: infected_icon,
+            iconSize: [70, 70],
             tileProviders: [
                 {
                 name: 'Stadia Alidade Smooth [Dark]',
@@ -102,6 +113,8 @@ export default {
         LGeoJson,
         LMarker,
         LControlLayers,
+        LLayerGroup,
+        LIcon,
         'l-marker-cluster': Vue2LeafletMarkerCluster
     },
     methods: {
@@ -120,7 +133,7 @@ export default {
             return () => {
                 return {
                     weight: 0.5,
-                    color: "#FFE0B2",
+                    color: '#64DD17',
                     opacity: 1,
                     fillColor: "none",
                     fillOpacity: 0
@@ -131,7 +144,7 @@ export default {
             return () => {
                 return {
                     weight: 1,
-                    color: "#FFA726",
+                    color: "#D50000",
                     fillColor: "none",
                     fillOpacity:0
                 }
