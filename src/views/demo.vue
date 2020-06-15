@@ -1,12 +1,10 @@
 <template>
   <v-chart
-    :options="map "
+    :options="map"
   />
 </template>
 
 <style>
-@import '~leaflet/dist/leaflet.css';
-
 .echarts {
   width: 100%;
   height: 100%;
@@ -20,12 +18,12 @@ import 'echarts/lib/chart/scatter'
 import 'echarts/lib/chart/effectScatter'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/geo'
-import 'echarts-leaflet';
-import "echarts/extension/bmap/bmap.js";
-import map from '../assets/map'
-import district from '../assets/District.json'
 
-ECharts.registerMap('Nepal', district)
+
+import map from '../assets/map'
+import chinaMap from '../assets/china.json'
+
+ECharts.registerMap('china', chinaMap)
 
 
 export default {
