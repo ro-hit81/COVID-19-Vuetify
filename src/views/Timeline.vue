@@ -14,6 +14,7 @@
 </style>
 
 <script>
+import axios from 'axios'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/map'
 import 'echarts/lib/chart/scatter'
@@ -34,8 +35,32 @@ export default {
   },
   data () {
     return {
-      map
+      map,
+      data: [],
     }
   },
+  created() {
+    axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) =>{
+      const groups = res.data.reduce((groups, info) => {
+        const date = info.reportedOn;
+        if (!groups[date]) {
+          groups[date] = [];
+        }
+        groups[date].push(info);
+        return groups;
+      }, {});
+      const sortedData = Object.keys(groups).map((date) =>{
+        return{
+          date,
+          infos: groups[date]
+        };
+      })
+      for(let i=0; i< sortedData.length; i++) {
+        for(let j=0; j< sortedData[i].length; j++) {
+          console.log(sortedData.infos[j])
+        }
+      }
+    })
+  }
 }
 </script>

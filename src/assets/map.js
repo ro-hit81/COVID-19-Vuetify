@@ -1,20 +1,48 @@
-import axios from 'axios'
+// import axios from 'axios'
 
-const data= []
-const data_date= []
-axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
-  const result = res.data
-  for (let i=0; i<= result.length; i++){
-    const resu = result[i];
-    data.push([
-      resu.point.coordinates[0],
-      resu.point.coordinates[1],
-      resu.age
-    ])
-    data_date.push(resu.reported0n)
-  }
-  
-})
+// const data=[]
+// const data_filtered= []
+// let options = null
+// axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
+//   const array = res.data
+//   const groups = array.reduce((groups, info) =>{
+//     const date = info.reportedOn;
+//     if (!groups[date]) {
+//       groups[date] = [];
+//     }
+//     groups[date].push(info);
+//     return groups;
+//   }, {});
+//   const sortedData = Object.keys(groups).map((date) =>{
+//     return{
+//       date,
+//       infos: groups[date]
+//     };
+//   })
+//   sortedData.push(data)
+// })
+// console.log(data)
+
+
+// axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
+//   const result = res.data
+//   for (let i=0; i<= result.length; i++){
+//     const resu = result[i];
+//     data.push([
+//       resu.point.coordinates[0],
+//       resu.point.coordinates[1],
+//       resu.age
+//     ])
+//     data_date.push(resu.reported0n)
+//   }
+//   options = result.map(function (day) {
+//     return {
+//         series: {
+//             data: day
+//         }
+//     };
+// })
+// })
 
 // function convertData (data) {
 //   const res = []
@@ -30,33 +58,34 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
 //   return res
 // }
 export default {
-  // timeline: {
-  //   axisType: 'category',
-  //   data: data_date,
-  //   autoPlay: true,
-  //   playInterval: 500,
-  //   symbolSize: 4,
-  //   tooltip: {
-  //       formatter: function (params) {
-  //           return params.name;
-  //       }
-  //   },
-  //   itemStyle: {
-  //       color: '#ccc'
-  //   },
-  //   lineStyle: {
-  //       color: '#eee'
-  //   },
-  //   label: {
-  //       color: '#999'
-  //   },
-  //   checkpointStyle: {
-  //       color: 'red'
-  //   },
-  //   controlStyle: {
-  //       borderColor: '#bbb'
-  //   }
-  // },
+  timeline: {
+    axisType: 'category',
+    data: [],
+    autoPlay: true,
+    playInterval: 500,
+    symbolSize: 8,
+    tooltip: {
+        formatter: function (params) {
+            return params.name;
+        }
+    },
+    itemStyle: {
+        color: '#ccc'
+    },
+    lineStyle: {
+        color: '#eee'
+    },
+    label: {
+        color: '#999'
+    },
+    checkpointStyle: {
+        color: 'red'
+    },
+    controlStyle: {
+        borderColor: '#bbb'
+    }
+  },
+  options: null,
   baseOption: {
     title: {
       text: 'COVID-19 Timeline',
@@ -70,7 +99,7 @@ export default {
       {
         type: 'scatter',
         coordinateSystem: 'leaflet',
-        data: data,
+        data: [],
         symbolSize: function (value) {
           return value[2] > 0 ? Math.log(value[2]) * 3 : 0;
         }
