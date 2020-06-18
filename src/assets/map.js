@@ -1,69 +1,57 @@
-// import axios from 'axios'
+import axios from 'axios'
 
-// const data=[]
-// const data_filtered= []
-// let options = null
-// axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
-//   const array = res.data
-//   const groups = array.reduce((groups, info) =>{
-//     const date = info.reportedOn;
-//     if (!groups[date]) {
-//       groups[date] = [];
-//     }
-//     groups[date].push(info);
-//     return groups;
-//   }, {});
-//   const sortedData = Object.keys(groups).map((date) =>{
-//     return{
-//       date,
-//       infos: groups[date]
-//     };
-//   })
-//   sortedData.push(data)
-// })
-// console.log(data)
+// const data = []
+const date= []
+let options= [];
 
 
-// axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
-//   const result = res.data
-//   for (let i=0; i<= result.length; i++){
-//     const resu = result[i];
-//     data.push([
-//       resu.point.coordinates[0],
-//       resu.point.coordinates[1],
-//       resu.age
-//     ])
-//     data_date.push(resu.reported0n)
-//   }
-//   options = result.map(function (day) {
-//     return {
-//         series: {
-//             data: day
-//         }
-//     };
-// })
-// })
+axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
+  const array = res.data
+  const groups = array.reduce((groups, info) =>{
+    const date = info.reportedOn;
+    if (!groups[date]) {
+      groups[date] = [];
+    }
+    groups[date].push(info);
+    return groups;
+  }, {});
+  const groupingDate = Object.keys(groups).map((date) =>{
+    return{
+      date: date,
+      infos: groups[date]
+    };
+    
+  })
+  const sortedData = groupingDate.sort((a,b) => {
+    var dateA = new Date(a.date) , dateB = new Date(b.date)
+    return  dateA - dateB
+  })
+  for(let i=0; i< sortedData.length; i++) {
+    date.push(sortedData[i].date)
+    const array = sortedData[i].infos
+    const newlist= [];
+    for(let j=0; j< array.length; j++) {
+      newlist.push([array[j].point.coordinates[0], array[j].point.coordinates[1], array[j].age])
+    }
+    options = newlist.map(function(day) {
+      return {
+        series: {
+          data: day
+        }
+      }
+    })
+    console.log(options)
+  }
+  
+})
 
-// function convertData (data) {
-//   const res = []
-//   for (let i = 0; i < data.length; i++) {
-//     const geoCoord = geoCoordMap[data[i].name]
-//     if (geoCoord) {
-//       res.push({
-//         name: data[i].name,
-//         value: geoCoord.concat(data[i].value)
-//       })
-//     }
-//   }
-//   return res
-// }
 export default {
   timeline: {
     axisType: 'category',
-    data: [],
+    data: date,
     autoPlay: true,
-    playInterval: 500,
-    symbolSize: 8,
+    playInterval: 1000,
+    symbolSize: 10,
     tooltip: {
         formatter: function (params) {
             return params.name;
@@ -85,7 +73,7 @@ export default {
         borderColor: '#bbb'
     }
   },
-  options: null,
+  options: options,
   baseOption: {
     title: {
       text: 'COVID-19 Timeline',
@@ -100,6 +88,7 @@ export default {
         type: 'scatter',
         coordinateSystem: 'leaflet',
         data: [],
+        // symbolSize: 50
         symbolSize: function (value) {
           return value[2] > 0 ? Math.log(value[2]) * 3 : 0;
         }
