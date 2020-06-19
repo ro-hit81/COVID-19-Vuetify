@@ -1,9 +1,8 @@
 import axios from 'axios'
 
-// const data = []
+const data = []
 const date= []
-let options= [];
-
+let options= []
 
 axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   const array = res.data
@@ -29,28 +28,27 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   for(let i=0; i< sortedData.length; i++) {
     date.push(sortedData[i].date)
     const array = sortedData[i].infos
-    const newlist= [];
-    for(let j=0; j< array.length; j++) {
-      newlist.push([array[j].point.coordinates[0], array[j].point.coordinates[1], array[j].age])
-    }
-    options = newlist.map(function(day) {
-      return {
-        series: {
-          data: day
-        }
-      }
-    })
-    console.log(options)
+    data.push(array)
   }
-  
+  const points= [];
+  const newlist = data.map(x => {
+    points.push([x[0].point.coordinates[0], x[0].point.coordinates[1]]);
+    return {
+      series:{
+        data: points.slice(0)
+      }
+    }
+  })
+  options.push(...newlist)
+  console.log(options)
 })
 
 export default {
   timeline: {
     axisType: 'category',
     data: date,
-    autoPlay: true,
-    playInterval: 1000,
+    autoPlay: false,
+    playInterval: 500,
     symbolSize: 10,
     tooltip: {
         formatter: function (params) {
@@ -73,7 +71,7 @@ export default {
         borderColor: '#bbb'
     }
   },
-  options: options,
+  options: [options][0],
   baseOption: {
     title: {
       text: 'COVID-19 Timeline',
@@ -88,16 +86,16 @@ export default {
         type: 'scatter',
         coordinateSystem: 'leaflet',
         data: [],
-        // symbolSize: 50
-        symbolSize: function (value) {
-          return value[2] > 0 ? Math.log(value[2]) * 3 : 0;
-        }
+        symbolSize: 10
+        // symbolSize: function (value) {
+        //   return value[2] > 0 ? Math.log(value[2]) * 3 : 0;
+        // }
       }
     ],
     visualMap: {
       type: 'continuous',
       min: 0,
-      max: 100,
+      max: 10,
       inRange: {
           color: ['orange', 'red'],
           opacity: [0.5, 0.8]

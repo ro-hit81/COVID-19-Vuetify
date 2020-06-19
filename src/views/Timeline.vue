@@ -14,7 +14,6 @@
 </style>
 
 <script>
-// import axios from 'axios'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/map'
 import 'echarts/lib/chart/scatter'
