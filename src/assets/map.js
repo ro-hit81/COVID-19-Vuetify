@@ -30,17 +30,16 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
     const array = sortedData[i].infos
     data.push(array)
   }
-  const points= [];
-  const newlist = data.map(x => {
-    points.push([x[0].point.coordinates[0], x[0].point.coordinates[1]]);
-    return {
-      series:{
-        data: points.slice(0)
-      }
+  const timelineData = data.map(series => ({
+    series:{
+      data: series.map(i => [i.point.coordinates[0], i.point.coordinates[1]])
     }
+  }))
+  timelineData.forEach((_, index) => {
+    if(index == 0) return
+    timelineData[index].series.data = [...timelineData[index - 1].series.data, ...timelineData[index].series.data]
   })
-  options.push(...newlist)
-  console.log(options)
+  options.push(...timelineData)
 })
 
 export default {
@@ -71,7 +70,7 @@ export default {
         borderColor: '#bbb'
     }
   },
-  options: [options][0],
+  options: options,
   baseOption: {
     title: {
       text: 'COVID-19 Timeline',
