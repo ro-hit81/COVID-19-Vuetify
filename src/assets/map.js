@@ -47,82 +47,97 @@ export default {
     axisType: 'category',
     data: date,
     autoPlay: false,
-    playInterval: 500,
-    symbolSize: 10,
-    tooltip: {
-        formatter: function (params) {
-            return params.name;
+    playInterval: 1000,
+    symbol:'diamond',
+    symbolSize: 12,
+    itemStyle: {
+        color: '#ccc',
+        emphasis: {
+          color: '#EA80FC'
         }
     },
-    itemStyle: {
-        color: '#ccc'
-    },
     lineStyle: {
-        color: '#eee'
+        color: '#CE93D8',
+        emphasis: {
+          color: '#AB47BC'
+        }
     },
     label: {
-        color: '#999'
+        color: '#FFFFFF',
+        emphasis: {
+          color: '#AB47BC'
+        }
     },
     checkpointStyle: {
-        color: 'red'
+        color: '#AB47BC',
+        borderColor: '#AB47BC',
+        symbol: 'diamond',
+        symbolSize: 10
     },
     controlStyle: {
-        borderColor: '#bbb'
+        borderColor: '#AB47BC',
+        itemSize: 20,
+        emphasis: {
+          borderColor: '#AB47BC'
+        }
     }
   },
   options: options,
   baseOption: {
+    backgroundColor: '#424242',
     title: {
       text: 'COVID-19 Timeline',
       subtext: 'cases in NEPAL',
       left: 'center',
       textStyle: {
-        color: '#546E7A'
+        color: '#E0E0E0'
       }
+    },
+    tooltip: {
+      trigger: 'item'
     },
     series: [
       {
         type: 'scatter',
-        coordinateSystem: 'leaflet',
+        coordinateSystem: 'geo',
         data: [],
-        symbolSize: 10
-        // symbolSize: function (value) {
-        //   return value[2] > 0 ? Math.log(value[2]) * 3 : 0;
-        // }
+        symbolSize: 10,
       }
     ],
     visualMap: {
       type: 'continuous',
       min: 0,
-      max: 10,
+      max: 30,
+      realtime: true,
       inRange: {
-          color: ['orange', 'red'],
-          opacity: [0.5, 0.8]
+          color: ['#FF8A65', '#DD2C00'],
+          opacity: [0.6, 0.8]
       },
       dimension: 2
     },
-    leaflet: {
+    geo: {
+      type: 'map',
       map: 'Nepal',
       label: {
         emphasis: {
-          show: true
+          show: false
         }
       },
+      roam: true,
       itemStyle: {
         normal: {
-          areaColor: '#F3E5F5',
-          borderColor: '#4A148C'
+          areaColor: '#BDBDBD',
+          borderColor: '#111'
         },
-        emphasis: {
-          areaColor: '#CE93D8'
-        }
+        // emphasis: {
+        //   areaColor: '#F5F5F5'
+        // }
       },
-      center: [84, 28],
-      roam: true,
-      zoom: 7,
-      tiles: [{
-        urlTemplate: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
-    }]
+    //   center: [84, 28],
+    //   roam: true,
+    //   tiles: [{
+    //     urlTemplate: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
+    // }]
     }
   }
 }

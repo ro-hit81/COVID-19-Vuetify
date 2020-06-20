@@ -1,6 +1,7 @@
 <template>
   <v-chart
-    :options="map "
+    :options="map"
+    autoresize
   />
 </template>
 
@@ -21,8 +22,8 @@ import 'echarts/lib/chart/effectScatter'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/geo'
 import 'echarts-leaflet';
-import "echarts/extension/bmap/bmap.js";
 import map from '../assets/map'
+import "echarts/extension/bmap/bmap.js";
 import district from '../assets/District.json'
 
 ECharts.registerMap('Nepal', district)
