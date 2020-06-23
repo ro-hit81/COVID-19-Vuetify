@@ -47,7 +47,7 @@ export default {
     axisType: 'category',
     data: date,
     autoPlay: false,
-    playInterval: 1000,
+    playInterval: 500,
     symbol:'diamond',
     symbolSize: 12,
     itemStyle: {
@@ -84,7 +84,6 @@ export default {
   },
   options: options,
   baseOption: {
-    backgroundColor: '#424242',
     title: {
       text: 'COVID-19 Timeline',
       subtext: 'cases in NEPAL',
@@ -99,7 +98,7 @@ export default {
     series: [
       {
         type: 'scatter',
-        coordinateSystem: 'geo',
+        coordinateSystem: 'leaflet',
         data: [],
         symbolSize: 10,
       }
@@ -115,12 +114,12 @@ export default {
       },
       dimension: 2
     },
-    geo: {
-      type: 'map',
-      map: 'Nepal',
+    leaflet: {
+      // type: 'map',
+      // map: 'Nepal',
       label: {
         emphasis: {
-          show: false
+          show: true
         }
       },
       roam: true,
@@ -129,15 +128,15 @@ export default {
           areaColor: '#BDBDBD',
           borderColor: '#111'
         },
-        // emphasis: {
-        //   areaColor: '#F5F5F5'
-        // }
+        emphasis: {
+          areaColor: '#F5F5F5'
+        }
       },
-    //   center: [84, 28],
-    //   roam: true,
-    //   tiles: [{
-    //     urlTemplate: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
-    // }]
+      center: [83.9856, 28.2096],
+      tiles: [{
+        urlTemplate: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
+      }],
+      zoom: 8
     }
   }
 }
