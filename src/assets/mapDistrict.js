@@ -43,8 +43,6 @@ axios.get('https://data.nepalcorona.info/api/v1/covid/summary').then((res) => {
             top5[i].district_name
         ])
     }
-    console.log(data_top5)
-
 })
 export default {
     title: {
@@ -79,7 +77,7 @@ export default {
             data: data,
             roam: true,
             symbolSize: function(params) {
-                return params[2]/30
+                return params[2] > 50 ? params[2]/30 : 3
             },
             tooltip: {
                 formatter: function (val) {

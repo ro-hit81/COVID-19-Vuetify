@@ -1,10 +1,10 @@
 <template>
   <v-col cols="12" lg="4" md="4" sm="12" xs="12">
     <v-card class="mt-9 card_hold ma-auto"  max-width="400" height="300" ripple rounded>
-      <v-card-subtitle>District</v-card-subtitle>
-      <v-card-subtitle>District</v-card-subtitle>
-      <v-card-subtitle>District</v-card-subtitle>
-      <v-card-title>Map View</v-card-title>
+      <v-card-subtitle>Nepal</v-card-subtitle>
+      <v-card-subtitle>Nepal</v-card-subtitle>
+      <v-card-subtitle>Nepal</v-card-subtitle>
+      <v-card-title>Stack Line Chart View</v-card-title>
       <v-card-subtitle>Covid-19 Cases in Nepal</v-card-subtitle>
       <v-card-actions class="caption">
         <v-icon small class="ml-1">mdi-alarm-check</v-icon>
@@ -18,7 +18,7 @@
       </v-card-actions>
     </v-card>
     <v-sheet color="blue-grey darken-4" max-width="380" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
-      <v-chart :options="mapDistrict"/>
+      <v-chart :options="timelineChart"/>
     </v-sheet>
   </v-col>
 </template>
@@ -26,20 +26,15 @@
 <script>
 import { mapGetters } from 'vuex'
 import ECharts from 'vue-echarts'
-import 'echarts/lib/chart/map'
-import 'echarts/lib/chart/scatter'
-import 'echarts/lib/chart/effectScatter'
-import mapDistrict from '../assets/mapDistrict'
-import NepalDistrict from '../assets/District.json'
+import timelineChart from '../assets/timelineChart'
 
-ECharts.registerMap('NepalDistrict', NepalDistrict)
 export default {
     components: {
         'v-chart' : ECharts
     },
     data() {
         return {
-            mapDistrict
+            timelineChart
         }
     },
     computed: {

@@ -3,6 +3,7 @@
     <v-row>
       <LineChart />
       <MapDistrict />
+      <TimelineChart />
     </v-row>
     
   </v-container>
@@ -11,11 +12,13 @@
 <script>
 import LineChart from '@/components/LineChart'
 import MapDistrict from '@/components/MapDistrict'
+import TimelineChart from '../components/TimelineChart'
 
 export default {
   components: {
     LineChart: LineChart,
-    MapDistrict: MapDistrict
+    MapDistrict: MapDistrict,
+    TimelineChart: TimelineChart
   }
 }
 </script>

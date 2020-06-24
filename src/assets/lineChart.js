@@ -33,7 +33,7 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
 
 export default {
   title: {
-    text: 'Covid-19 Cases',
+    text: 'Covid-19 Cases (NEPAL)',
     textStyle: {
       color: '#ffffff',
       fontWeight: 'normal'
