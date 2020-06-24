@@ -1,21 +1,32 @@
 <template>
-    <v-chart :options="lineChart">
-
-    </v-chart>
+<v-chart :options="lineChart"/>
 </template>
-
+ 
+<style>
+/**
+ * The default size is 600px×400px, for responsive charts
+ * you may need to set percentage values as follows (also
+ * don't forget to provide a size for the container).
+ */
+.echarts {
+  width: 100%;
+  height: 100%;
+}
+</style>
+ 
 <script>
 import ECharts from 'vue-echarts'
-import lineChart from '@/assets/lineChart'
+import 'echarts/lib/chart/line'
+import lineChart from '../assets/lineChart'
+ 
 export default {
-    components: {
-        'v-chart': ECharts,
-    },
-    data() {
-        return {
-            lineChart
-        }
-    } 
-    
+  components: {
+    'v-chart': ECharts,
+  },
+  data () {
+    return {
+        lineChart,
+    }
+  }
 }
 </script>

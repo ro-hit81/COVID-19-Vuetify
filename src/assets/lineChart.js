@@ -1,7 +1,8 @@
 import axios from 'axios'
+
 const data = []
-const date = []
-const options = []
+const date= []
+
 axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   const array = res.data
   const groups = array.reduce((groups, info) =>{
@@ -26,7 +27,75 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   for(let i=0; i< sortedData.length; i++) {
     date.push(sortedData[i].date)
     const array = sortedData[i].infos
-    data.push(array)
+    data.push(array.length)
   }
-  console.log(data)
 })
+
+export default {
+  title: {
+    text: 'Covid-19 Cases',
+    textStyle: {
+      color: '#ffffff',
+      fontWeight: 'normal'
+    },
+    subtext: 'On daily basis',
+    subtextStyle: {
+      color: '#CFD8DC'
+    },
+    left: 'center'
+  },
+  tooltip: {
+    trigger: 'axis',
+    axisPointer: {
+        type: 'cross',
+    },
+  },
+  xAxis: {
+    type: 'category',
+    data: date,
+    axisLine: {
+      lineStyle: {
+        color: '#E0E0E0',
+      }
+    },
+    axisPointer: {
+      label: {
+        formatter: function(params) {
+          return 'Date: ' + params.value 
+        },
+        backgroundColor : '#FFB74D'
+      },
+
+    }
+  },
+  yAxis: {
+    type: 'value',
+    axisLine: {
+      lineStyle: {
+        color: '#E0E0E0',
+      }
+    },
+    axisPointer:{
+      label: {
+        backgroundColor: '#FFB74D'
+      }
+    }
+  },
+  series: [{
+    data: data,
+    type: 'line',
+    symbol: 'diamond',
+    symbolSize: 3,
+    itemStyle: {
+      color: '#bb6fde',
+    },
+    lineStyle: {
+      color: '#ffffff',
+      width: 2
+    },
+  }],
+  dataZoom: {
+    type: 'inside'
+  },
+  animationDuration: 2000
+}

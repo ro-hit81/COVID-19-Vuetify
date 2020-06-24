@@ -2,7 +2,7 @@
   <v-container id="dashboard" fluid tag="section" >
     <v-row>
       <v-col cols="12" lg="4" md="3">
-        <v-card class="mt-9 card_hold"  max-width="500" height="300" ripple rounded>
+        <v-card class="mt-9 card_hold mx-auto"  max-width="410" height="300" ripple rounded>
           <v-card-subtitle>Nepal</v-card-subtitle>
           <v-card-subtitle>Nepal</v-card-subtitle>
           <v-card-subtitle>Nepal</v-card-subtitle>
@@ -13,12 +13,12 @@
             <span class="caption ml-2"> updated 10 minutes ago</span>
           </v-card-actions>
         </v-card>
-        <v-sheet color="pink darken-1" max-width="480" height="210" class="sheet_hold mx-3" elevation="4" rounded>
-          <v-card-title>Line Charts</v-card-title>
+        <v-sheet color="blue lighten-1" max-width="390" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
+          <LineChart/>
         </v-sheet>
       </v-col>
       <v-col cols="12" lg="4" md="3">
-        <v-card class="mt-9 card_hold"  max-width="500" height="300" ripple rounded>
+        <v-card class="mt-9 card_hold mx-auto"  max-width="410" height="300" ripple rounded>
           <v-card-subtitle>Nepal</v-card-subtitle>
           <v-card-subtitle>Nepal</v-card-subtitle>
           <v-card-subtitle>Nepal</v-card-subtitle>
@@ -29,12 +29,12 @@
             <span class="caption ml-2"> updated 10 minutes ago</span>
           </v-card-actions>
         </v-card>
-        <v-sheet color="green darken-1" max-width="480" height="210" class="sheet_hold mx-3" elevation="4" rounded>
-          <v-card-title>Line Charts</v-card-title>
+        <v-sheet color="green darken-1" max-width="390" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
+          <LineChart/>
         </v-sheet>
       </v-col>
       <v-col cols="12" lg="4" md="3">
-        <v-card class="mt-9 card_hold"  max-width="500" height="300" ripple rounded>
+        <v-card class="mt-9 card_hold mx-auto"  max-width="410" height="300" ripple rounded>
           <v-card-subtitle>Nepal</v-card-subtitle>
           <v-card-subtitle>Nepal</v-card-subtitle>
           <v-card-subtitle>Nepal</v-card-subtitle>
@@ -45,20 +45,23 @@
             <span class="caption ml-2"> updated 10 minutes ago</span>
           </v-card-actions>
         </v-card>
-        <v-sheet color="cyan lighten-1" max-width="480" height="210" class="sheet_hold mx-3" elevation="4" rounded>
-          <v-card-title>Line Charts</v-card-title>
+        <v-sheet color="green darken-1" max-width="390" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
+          <LineChart/>
         </v-sheet>
       </v-col>
+      
     </v-row>
     
   </v-container>
 </template>
  
 <script>
-// @ is an alias to /src
-
+import LineChart from '@/components/LineChart'
 
 export default {
+  components: {
+    LineChart: LineChart
+  }
 
 }
 </script>
