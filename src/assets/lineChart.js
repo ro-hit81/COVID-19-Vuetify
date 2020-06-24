@@ -50,6 +50,36 @@ export default {
         type: 'cross',
     },
   },
+  toolbox: {
+    left: 'right',
+    bottom: 'bottom',
+    feature: {
+      saveAsImage: {
+        type: 'png',
+        title: 'save as image',
+        name: 'Multiple Line Chart',
+        excludeComponents: ['toolbox'],
+        backgroundColor: '#FF6F00',
+        emphasis: {
+          iconStyle: {
+            borderColor: '#76FF03',
+          }
+        }
+      },
+      restore: {
+        show: true,
+        title: 'save as image',
+        emphasis: {
+          iconStyle: {
+            borderColor: '#76ff03'
+          }
+        }
+      }
+    },
+    iconStyle: {
+      borderColor: '#fff'
+    }
+  },
   xAxis: {
     type: 'category',
     data: date,

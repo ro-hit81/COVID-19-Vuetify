@@ -69,6 +69,36 @@ export default {
             color: '#fff'
         }
     },
+    toolbox: {
+        left: 'right',
+        bottom: 'bottom',
+        feature: {
+            saveAsImage: {
+                type: 'png',
+                title: 'save as image',
+                name: 'COVID-19 Case District Wise',
+                excludeComponents: ['toolbox'],
+                backgroundColor: '#FF6F00',
+                emphasis: {
+                    iconStyle: {
+                        borderColor: '#76FF03',
+                    },
+                }
+            },
+            restore: {
+                show: true,
+                title: 'Reset Zoom',
+                emphasis: {
+                    iconStyle: {
+                        borderColor: '#76FF03',
+                    }
+                }
+            }
+        },
+        iconStyle: {
+            borderColor: '#fff',
+        }
+    },
     series: [
         {
             name: 'Cases',

@@ -4,7 +4,7 @@
       <v-card-subtitle>Nepal</v-card-subtitle>
       <v-card-subtitle>Nepal</v-card-subtitle>
       <v-card-subtitle>Nepal</v-card-subtitle>
-      <v-card-title>Stack Line Chart View</v-card-title>
+      <v-card-title>Multiple Line Chart View</v-card-title>
       <v-card-subtitle>Covid-19 Cases in Nepal</v-card-subtitle>
       <v-card-actions class="caption">
         <v-icon small class="ml-1">mdi-alarm-check</v-icon>
@@ -17,7 +17,7 @@
         <span class="font-weight-bold">{{dateConvert.nepal_time}} GMT</span>  
       </v-card-actions>
     </v-card>
-    <v-sheet color="blue-grey darken-4" max-width="380" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
+    <v-sheet color="amber darken-3" max-width="380" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
       <v-chart :options="timelineChart"/>
     </v-sheet>
   </v-col>
