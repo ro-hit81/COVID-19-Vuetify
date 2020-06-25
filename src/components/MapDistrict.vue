@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" lg="4" md="4" sm="12" xs="12">
+  <v-col cols="12" lg="4" md="4" sm="12" xs="12" class="mb-12">
     <v-card class="mt-9 card_hold ma-auto"  max-width="400" height="300" ripple rounded>
       <v-card-subtitle>District</v-card-subtitle>
       <v-card-subtitle>District</v-card-subtitle>
@@ -24,12 +24,12 @@
 </template>
 
 <script>
+import mapDistrict from '../assets/mapDistrict'
 import { mapGetters } from 'vuex'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/map'
 import 'echarts/lib/chart/scatter'
 import 'echarts/lib/chart/effectScatter'
-import mapDistrict from '../assets/mapDistrict'
 import NepalDistrict from '../assets/District.json'
 
 ECharts.registerMap('NepalDistrict', NepalDistrict)

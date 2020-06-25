@@ -1,5 +1,5 @@
 <template>
-  <v-col cols="12" lg="4" md="4" sm="12" xs="12">
+  <v-col cols="12" lg="4" md="4" sm="12" xs="12"  class="mb-12">
     <v-card class="mt-9 card_hold ma-auto"  max-width="400" height="300" ripple rounded>
       <v-card-subtitle>Nepal</v-card-subtitle>
       <v-card-subtitle>Nepal</v-card-subtitle>
@@ -24,9 +24,10 @@
 </template>
 
 <script>
+import timelineChart from '../assets/timelineChart'
+
 import { mapGetters } from 'vuex'
 import ECharts from 'vue-echarts'
-import timelineChart from '../assets/timelineChart'
 
 export default {
     components: {

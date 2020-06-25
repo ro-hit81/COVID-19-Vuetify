@@ -14,9 +14,6 @@ axios.get('https://data.nepalcorona.info/api/v1/covid/timeline').then((res) => {
         totalRecoveries.push(array[i].totalRecoveries)
         totalDeaths.push(array[i].totalDeaths)
     }
-    console.log(totalCases)
-    console.log(totalDeaths)
-    console.log(totalRecoveries)
 })
 
 export default {

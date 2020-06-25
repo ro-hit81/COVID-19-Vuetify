@@ -11,6 +11,7 @@ export default new Vuex.Store({
     nepal_stats: [],
     global_stats: [],
     country_stats:[],
+    top10_countries: [],
     // nepal_data: NepalData,
     // District: [],
     
@@ -24,6 +25,9 @@ export default new Vuex.Store({
     },
     SET_COUNTRY_STATS (state, country_stats) {
       state.country_stats = country_stats
+    },
+    SET_TOP_COUNTRY_STATS (state, top10_countries) {
+      state.top10_countries = top10_countries
     },
     SET_DATE (state, date) {
       state.date = date
@@ -60,9 +64,13 @@ export default new Vuex.Store({
       axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
         const global_stats = res.data.Global
         const country_stats = res.data.Countries
+        const top10_countries = country_stats.sort((a, b) => {
+          return b.TotalConfirmed - a.TotalConfirmed
+        }).slice(0,10)
         const date = res.data.Date
         commit('SET_GLOBAL_STATS', global_stats);
         commit('SET_COUNTRY_STATS', country_stats);
+        commit('SET_TOP_COUNTRY_STATS', top10_countries);
         commit('SET_DATE', date)
       }).catch(error => {
         throw new Error(`API ${error}`)

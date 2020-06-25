@@ -5,20 +5,24 @@
       <MapDistrict />
       <TimelineChart />
     </v-row>
-    
+    <v-row class="mt-12">
+      <GlobalTable />
+    </v-row> 
   </v-container>
 </template>
  
 <script>
 import LineChart from '@/components/LineChart'
 import MapDistrict from '@/components/MapDistrict'
-import TimelineChart from '../components/TimelineChart'
+import TimelineChart from '@/components/TimelineChart'
+import GlobalTable from '@//components/GlobalTable'
 
 export default {
   components: {
     LineChart: LineChart,
     MapDistrict: MapDistrict,
-    TimelineChart: TimelineChart
+    TimelineChart: TimelineChart,
+    GlobalTable: GlobalTable
   }
 }
 </script>
