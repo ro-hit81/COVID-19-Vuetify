@@ -147,7 +147,6 @@ export default {
         },
         clicked: function(Mythdata) {
             this.dialogData = Mythdata
-            console.log(this.dialogData)
         },
     },
     computed: {
