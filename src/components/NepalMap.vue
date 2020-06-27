@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="9">      
+    <v-col cols="12" xs="12" sm="12" md="9" lg="9">      
         <div class="map mt-3">
           <l-map
             :zoom= "zoom"

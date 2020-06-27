@@ -4,5 +4,4 @@ module.exports = {
     "vue-echarts",
     "resize-detector"
   ],
-  publicPath: 'COVID-19-Vuetify'
 }

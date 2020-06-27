@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="3" class="text-center">
+    <v-col cols="12" xs="12" sm="12" md="3" lg="3" class="text-center">
         <v-bottom-navigation :value="activeBtn" color="deep-purple" grow shift>
             <v-btn @click="show_province= true; show_district= false">
                 <span>PROVINCES</span>
