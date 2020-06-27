@@ -53,7 +53,7 @@ export default new Vuex.Store({
   },
   actions: {
     loadNepalStats({commit}) {
-      axios.get(process.env.VUE_APP_NepalStatAPI).then((res) => {
+      axios.get('https://nepalcorona.info/api/v1/data/nepal').then((res) => {
         const nepal_stats = res.data
         commit('SET_STATS', nepal_stats)
       }).catch(error => {
@@ -61,7 +61,7 @@ export default new Vuex.Store({
       })
     },
     loadGlobalStats({commit}) {
-      axios.get(process.env.VUE_APP_GlobalStatAPI).then((res) => {
+      axios.get('https://api.covid19api.com/summary').then((res) => {
         const global_stats = res.data.Global
         const country_stats = res.data.Countries
         const top10_countries = country_stats.sort((a, b) => {
