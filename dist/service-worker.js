@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "COVID-19-Vuetify/precache-manifest.48a7c87027ebb2123123bd6a265799ea.js"
+  "/precache-manifest.1617ebada069f820f374e055e4a5b49a.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "corona_app"});
