@@ -107,7 +107,7 @@ export default {
             data: data,
             roam: true,
             symbolSize: function(params) {
-                return params[2] > 50 ? params[2]/30 : 3
+                return params[2] > 50 ? Math.log(params[2]) : 2
             },
             tooltip: {
                 formatter: function (val) {
@@ -127,7 +127,7 @@ export default {
             coordinateSystem: 'geo',
             data: data_top5,
             symbolSize: function(params) {
-                return params[2]/40
+                return Math.log(params[2]*10)
             },
             showEffectOn: 'render',
             rippleEffect: {
