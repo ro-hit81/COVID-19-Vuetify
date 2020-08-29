@@ -11,7 +11,7 @@
 
             <v-spacer></v-spacer>
 
-            <v-btn text color="primary" dark href="https://rohit81.com.np/resume/">
+            <v-btn text color="primary" dark href="https://rohit81.com.np/">
                 <span>My site</span>
                 <v-icon right>mdi-exit-to-app</v-icon>
             </v-btn>
