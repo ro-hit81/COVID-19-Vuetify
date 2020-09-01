@@ -18,7 +18,7 @@
                       :url="tileProvider.url"
                       :attribution="tileProvider.attribution" 
                       layer-type="base" />
-            <!-- <l-marker-cluster>
+            <l-marker-cluster>
               <l-marker 
                     :key="CoronaData.id" 
                     v-for="CoronaData in CoronaDatas" 
@@ -26,7 +26,7 @@
                     >
                     <l-icon :icon-size="iconSize" :icon-url="icon"></l-icon>
                     </l-marker>
-            </l-marker-cluster> -->
+            </l-marker-cluster>
             <l-control-layers position="bottomright"/>
             <l-layer-group>
                  <l-layer-group layer-type="overlay" name="Province" :visible="true">
@@ -62,11 +62,11 @@ import infected_icon from '../assets/infected.png'
 // Importing leaflet & its library
 
 import L from 'leaflet'
-import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup} from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LMarker, LControlLayers, LIcon, LLayerGroup} from 'vue2-leaflet';
 
 // Importing MarkerCluster
 
-// import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
 
 export default {
     data (){
@@ -111,11 +111,11 @@ export default {
         LMap,
         LTileLayer,
         LGeoJson,
-        // LMarker,
+        LMarker,
         LControlLayers,
         LLayerGroup,
-        // LIcon,
-        // 'l-marker-cluster': Vue2LeafletMarkerCluster
+        LIcon,
+        'l-marker-cluster': Vue2LeafletMarkerCluster
     },
     methods: {
         zoomUpdated(zoom){
