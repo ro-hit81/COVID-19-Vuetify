@@ -5,6 +5,7 @@
       <NepalList />
 
       <NepalMap />
+      <!-- <new-map /> -->
       
     </v-row>
   </div>
@@ -13,11 +14,13 @@
 <script>
 import NepalList from '@/components/NepalList'
 import NepalMap from '@/components/NepalMap'
+// import NewMap from '@/components/NewMap'
 
 export default {
   components: {
     NepalList: NepalList,
-    NepalMap: NepalMap
+    NepalMap: NepalMap,
+    // NewMap
   },
 
 }

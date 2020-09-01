@@ -7,6 +7,8 @@ import './registerServiceWorker'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
+import VueLayers from 'vuelayers'
+import 'vuelayers/lib/style.css'
 
 Vue.config.productionTip = false
 
@@ -16,6 +18,8 @@ Icon.Default.mergeOptions({
   iconUrl: require('leaflet/dist/images/marker-icon.png'),
   shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
 });
+
+Vue.use(VueLayers)
 
 Vue.filter('date-filter', function(value) {
   const filtered_date = value && value.slice(0,10)
