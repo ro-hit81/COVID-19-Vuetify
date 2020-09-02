@@ -68,7 +68,7 @@ export default {
       },
       restore: {
         show: true,
-        title: 'save as image',
+        title: 'Reset zoom',
         emphasis: {
           iconStyle: {
             borderColor: '#76ff03'

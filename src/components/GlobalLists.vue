@@ -25,7 +25,7 @@
                             <span>{{globalDateConvert.global_time}} GMT</span>
                         </v-btn>
                      </template>
-                    <span>List is updated at this date !!!</span>
+                    <span>List is updated at this time !!!</span>
                 </v-tooltip>
             </v-col>
             <v-col>
@@ -38,7 +38,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text" @click="sortBy('Country')" v-on="on">
                             <v-icon left>mdi-flag</v-icon>
-                            <span class="caption text-lowercase">By Country Name</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By Country Name</span>
                         </v-btn>
                     </template>
                     <span>Sort list by country in alphabetical order !!!</span>
@@ -49,7 +49,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text" @click="sortBy('TotalConfirmed')" v-on="on">
                             <v-icon left>mdi-account-group</v-icon>
-                            <span class="caption text-lowercase">By Total Confirmed</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By Total Confirmed</span>
                         </v-btn>
                     </template>
                     <span>Sort list by Total Confirmed case from highest to lowest !!!</span>
@@ -60,7 +60,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text" @click="sortBy('NewConfirmed')" v-on="on">
                             <v-icon left>mdi-account-switch-outline</v-icon>
-                            <span class="caption text-lowercase">By New Confirmed</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By New Confirmed</span>
                         </v-btn>
                     </template>
                     <span>Sort list by New Confirmed case from highest to lowest !!!</span>
@@ -71,7 +71,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text" @click="sortBy('TotalRecovered')" v-on="on">
                             <v-icon left>mdi-account-check</v-icon>
-                            <span class="caption text-lowercase">By Total Recovered</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By Total Recovered</span>
                         </v-btn>
                     </template>
                     <span>Sort list by Total Recovered case from highest to lowest !!!</span>
@@ -82,7 +82,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text" @click="sortBy('NewRecovered')" v-on="on">
                             <v-icon left>mdi-account-star</v-icon>
-                            <span class="caption text-lowercase">By New Recovered</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By New Recovered</span>
                         </v-btn>
                     </template>
                     <span>Sort list by New Recovered case from highest to lowest !!!</span>
@@ -93,7 +93,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text" @click="sortBy('TotalDeaths')" v-on="on">
                             <v-icon left>mdi-account-remove</v-icon>
-                            <span class="caption text-lowercase">By Total Deaths</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By Total Deaths</span>
                         </v-btn>
                     </template>
                     <span>Sort list by Total Death case from highest to lowest !!!</span>
@@ -104,7 +104,7 @@
                     <template v-slot:activator="{ on }">
                         <v-btn small depressed color="searchbtn--text " @click="sortBy('NewDeaths')" v-on="on">
                             <v-icon left>mdi-account-alert</v-icon>
-                            <span class="caption text-lowercase">By New Deaths</span>
+                            <span class="caption text-lowercase indigo--text text-darken-4">By New Deaths</span>
                         </v-btn>
                     </template>
                     <span>Sort list by New Deaths case from highest to lowest !!!</span>
@@ -193,7 +193,7 @@ export default {
         ]),
         filteredStats: function(){
             return this.country_stats.filter((stat) => {
-                return stat.Country.match(this.received);
+                return stat.Country.match(this.received.charAt(0).toUpperCase() + this.received.slice(1));
             });
         },
     },
