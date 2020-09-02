@@ -32,12 +32,12 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   }
   const timelineData = data.map(series => ({
     series:{
-      data: series.map(i => [i.point.coordinates[0], i.point.coordinates[1]])
+      data: series.map(i => [i.point.coordinates[0], i.point.coordinates[1], i.id, i.reportedOn, i.gender, i.label])
     }
   }))
   timelineData.forEach((_, index) => {
     if(index == 0) return
-    timelineData[index].series.data = [...timelineData[index - 1].series.data, ...timelineData[index].series.data]
+    timelineData[index].series.data = [...timelineData[index - 1].series.data, ...timelineData[index].series.data,]
   })
   options.push(...timelineData)
 })
@@ -47,9 +47,9 @@ export default {
     axisType: 'category',
     data: date,
     autoPlay: false,
-    playInterval: 500,
+    playInterval: 800,
     symbol:'diamond',
-    symbolSize: 12,
+    symbolSize: 3,
     itemStyle: {
         color: '#ccc',
         emphasis: {
@@ -69,10 +69,11 @@ export default {
         }
     },
     checkpointStyle: {
-        color: '#AB47BC',
+        color: '#FFFFFF',
         borderColor: '#AB47BC',
+        borderWidth: 2,
         symbol: 'diamond',
-        symbolSize: 10
+        symbolSize: 12
     },
     controlStyle: {
         borderColor: '#AB47BC',
@@ -93,30 +94,37 @@ export default {
       }
     },
     tooltip: {
-      trigger: 'item'
+      trigger: 'item',
+      formatter: function(params){
+      return ('Reported on : ' + params.value[3] + '<br>' +'Gender : ' + params.value[4] + '<br>' + 'Case number : ' + params.value[5].slice(8) ) }
     },
     series: [
       {
         type: 'scatter',
         coordinateSystem: 'leaflet',
         data: [],
-        symbolSize: 10,
+        symbolSize: 6
       }
     ],
     visualMap: {
       type: 'continuous',
-      min: 0,
-      max: 30,
+      min: 39,
+      max: 40,
+      itemWidth: '14',
+      itemHeight: '14',
       realtime: true,
       inRange: {
-          color: ['#FF8A65', '#DD2C00'],
+          color: ['#D50000', '#D50000'],
           opacity: [0.6, 0.8]
       },
-      dimension: 2
+      dimension: 1,
+      textStyle: {
+        color: '#FFFFFF'
+      },
+      formatter: function(){
+        return 'Cases'}
     },
     leaflet: {
-      // type: 'map',
-      // map: 'Nepal',
       label: {
         emphasis: {
           show: true
@@ -134,9 +142,9 @@ export default {
       },
       center: [83.9856, 28.2096],
       tiles: [{
-        urlTemplate: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png'
+        urlTemplate: 'https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png'
       }],
-      zoom: 8
+      zoom: 7.2
     }
   }
 }
