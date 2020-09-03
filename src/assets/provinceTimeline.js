@@ -1,155 +1,95 @@
 import axios from 'axios'
 
-const date=[]
-const totalCases= []
-const totalRecoveries= []
-const totalDeaths= []
+const data = []
+const date =[]
 
-
-axios.get('https://data.nepalcorona.info/api/v1/covid/timeline').then((res) => {
-    const array = res.data    
-    for (let i=0; i<array.length; i++) {
-        date.push(array[i].date)
-        totalCases.push(array[i].totalCases)
-        totalRecoveries.push(array[i].totalRecoveries)
-        totalDeaths.push(array[i].totalDeaths)
+axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
+  const array = res.data
+  const groups = array.reduce((groups, info) => {
+    const date = info.reportedOn
+    if(!groups[date]) {
+      groups[date] = []
     }
+    groups[date].push(info)
+    return groups
+  }, {})
+  const  groupingDate = Object.keys(groups).map((date) => {
+    return {
+      date: date,
+      infos: groups[date]
+    }
+  })
+  const sortedData = groupingDate.sort((a, b) => {
+    var dateA = new Date(a.date) , dateB = new Date(b.date)
+    return dateA - dateB
+  })
+  for(let i=0; i< sortedData.length; i++) {
+    date.push(sortedData[i].date)
+    const new_array = sortedData[i].infos
+    const new_groups = new_array.reduce((new_groups, provInfo) => {
+      const province = provInfo.province
+      if(!new_groups[province]) {
+        new_groups[province] = []
+      }
+      new_groups[province].push(provInfo)
+      return new_groups
+    }, {})
+    const groupingData = Object.keys(new_groups).map((province) => {
+      return {
+        province: province,
+        cases: new_groups[province].length,
+      }
+    })
+    data.push(groupingData)
+  }
+  const group = data.reduce((acc, arr, i) => {
+  for(const province in acc) {
+    acc[province].push(0);
+  }
+  for(const {province,cases} of arr) {
+    if(!acc[province])
+    acc[province] = [province, ...Array(i).fill(0)]
+    acc[province][i+1] =cases
+  }
+  return acc
+}, {})
+  const data_source = Object.values(group)
+  console.log(data_source)
 })
 
 export default {
-    title: {
-      text: 'Covid-19 Cases (NEPAL)',
-      textStyle: {
-        color: '#ffffff',
-        fontWeight: 'normal'
+  legend: {},
+  tooltip: {
+    trigger: 'axis',
+    showContent: false
+  },
+  dataset: {
+    source:[]
+  },
+  xAxis: {type: 'category'},
+  yAxis: {gridIndex: 0 },
+  grid: {top: '55%'},
+  series: [
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {
+      type: 'pie',
+      id: 'pie',
+      radius: '30%',
+      center: ['50%', '25%'],
+      label: {
+        formatter: 'hello'
       },
-      left: 'center',
-      bottom: 'bottom'
-    },
-    legend: {
-        data: ['Total Cases', 'Total Recoveries', 'Total Deaths']
-    },
-    grid: {
-        left: '12%',
-        right: '18%',
-        top: '15%'
-    },
-    tooltip: {
-      trigger: 'axis',
-      axisPointer: {
-          type: 'line',
-      },
-    },
-    toolbox: {
-        left: 'right',
-        bottom: 'bottom',
-        feature: {
-            saveAsImage: {
-                type: 'png',
-                title: 'save as image',
-                name: 'Multiple Line Chart',
-                excludeComponents: ['toolbox'],
-                backgroundColor: '#FF6F00',
-                emphasis: {
-                    iconStyle: {
-                        borderColor: '#76FF03',
-                    },
-                }
-            },
-            restore: {
-                show: true,
-                title: 'Reset Zoom',
-                emphasis: {
-                    iconStyle: {
-                        borderColor: '#76FF03',
-                    }
-                }
-            }
-        },
-        iconStyle: {
-            borderColor: '#fff',
-        }
-    },
-    
-    xAxis: {
-      type: 'category',
-      data: date,
-      axisLine: {
-        lineStyle: {
-          color: '#E0E0E0',
-        }
-      },
-      axisPointer: {
-        label: {
-          formatter: function(params) {
-            return 'Date: ' + params.value 
-          },
-          backgroundColor : '#FFB74D'
-        },
-  
+      encode: {
+        itemName: '1',
+        value: 0,
+        tooltip: 0
       }
-    },
-    yAxis: {
-      type: 'value',
-      axisLine: {
-        lineStyle: {
-          color: '#E0E0E0',
-        }
-      },
-      axisPointer:{
-        label: {
-          backgroundColor: '#FFB74D'
-        }
-      }
-    },
-    series: [
-        {
-            name: 'Total Cases',
-            data: totalCases,
-            type: 'line',
-            symbol: 'diamond',
-            symbolSize: 3,
-            itemStyle: {
-                color: '#C62828',
-            },
-            lineStyle: {
-                color: '#D32F2F',
-                width: 2
-            },
-        },
-        {
-            name: 'Total Recoveries',
-            data: totalRecoveries,
-            type: 'line',
-            symbol: 'diamond',
-            symbolSize: 3,
-            itemStyle: {
-                color: '#76FF03',
-            },
-            lineStyle: {
-                color: '#64DD17',
-                width: 2
-            },
-        },
-        {
-            name: 'Total Deaths',
-            data: totalDeaths,
-            type: 'line',
-            symbol: 'diamond',
-            symbolSize: 3,
-            itemStyle: {
-                color: '#1565C0',
-            },
-            lineStyle: {
-                color: '#1565C0',
-                width: 2
-            },
-        },
-    ],
-    dataZoom: {
-      type: 'inside',
-      filterMode: 'filter',
-    },
-    animation: true,
-    animationDuration: 10000
-  }
+    }
+  ]
+}
