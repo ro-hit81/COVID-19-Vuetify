@@ -1,7 +1,7 @@
 <template>
     <v-container class="my-3 grey lighten-4 my-2">
       
-        <v-row>
+        <!-- <v-row>
             <v-col>
                 <h3 class="grey--text">
                     <span>Sort by:</span>
@@ -165,8 +165,28 @@
                 </v-row>
                 <v-divider></v-divider>
             </v-card>
-      </v-container>
-
+      </v-container> -->
+        <v-card>
+            <v-row>
+            <v-col>
+            <v-card-title>Gloabal Statistics</v-card-title>
+            </v-col>
+            <v-spacer></v-spacer>
+            <v-col>
+             <v-text-field label="Search Country or any statistical value" full-width="300" color="deep-purple accent-2" v-model="received" append-icon="mdi-flag"></v-text-field>
+             </v-col>
+             </v-row>
+            <v-data-table 
+                :headers="headers"
+                :items="country_stats"
+                :items-per-page="5"
+                :sort-by="['Country']"
+                :search="received"
+                multi-sort
+                class="elevation-1"
+            >
+            </v-data-table>
+        </v-card>
     </v-container>
 </template>
 
@@ -177,13 +197,27 @@ export default {
     data() {
         return{
             received: '',
+            headers: [
+            {
+                text: 'Country',
+                align: 'start',
+                value: 'Country',
+            },
+            { text: 'Total Confirmed', value: 'TotalConfirmed' },
+            { text: 'New confirmed', value: 'NewConfirmed' },
+            { text: 'Total Recovered', value: 'TotalRecovered' },
+            { text: 'New Recovered', value: 'NewRecovered' },
+            { text: 'Total Deaths', value: 'TotalDeaths' },
+            { text: 'New Deaths', value: 'NewDeaths' },
+            ],
+            country: []
         }
     },
-    methods:{
-        sortBy(prop) {
-            this.country_stats.sort((a,b) => a[prop] > b[prop] ? -1:1)
-        },
-    },
+    // methods:{
+    //     sortBy(prop) {
+    //         this.country_stats.sort((a,b) => a[prop] > b[prop] ? -1:1)
+    //     },
+    // },
     computed: {
         ...mapState([
             'country_stats',
@@ -191,11 +225,11 @@ export default {
         ...mapGetters([
             'globalDateConvert'
         ]),
-        filteredStats: function(){
-            return this.country_stats.filter((stat) => {
-                return stat.Country.match(this.received.charAt(0).toUpperCase() + this.received.slice(1));
-            });
-        },
+        // filteredStats: function(){
+        //     return this.country_stats.filter((stat) => {
+        //         return stat.Country.match(this.received.charAt(0).toUpperCase() + this.received.slice(1));
+        //     });
+        // },
     },
     mounted() {
         this.$store.dispatch('loadGlobalStats')
