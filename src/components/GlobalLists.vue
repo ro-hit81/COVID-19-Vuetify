@@ -168,22 +168,31 @@
       </v-container> -->
         <v-card>
             <v-row>
-            <v-col>
-            <v-card-title>Gloabal Statistics</v-card-title>
-            </v-col>
+                <v-col>
+                    <v-card-title>Global Stats List</v-card-title>
+                </v-col>
             <v-spacer></v-spacer>
-            <v-col>
-             <v-text-field label="Search Country or any statistical value" full-width="300" color="deep-purple accent-2" v-model="received" append-icon="mdi-flag"></v-text-field>
-             </v-col>
+                <v-col>
+                    <v-text-field
+                        label="Search Country or any statistical value"
+                        full-width="300"
+                        color="deep-purple accent-2"
+                        v-model="received"
+                        clearable
+                        append-icon="mdi-flag"
+                    >
+                    </v-text-field>
+                </v-col>
              </v-row>
-            <v-data-table 
+            <v-data-table
+                class="elevation-1"
                 :headers="headers"
                 :items="country_stats"
-                :items-per-page="5"
+                :items-per-page="10"
                 :sort-by="['Country']"
                 :search="received"
-                multi-sort
-                class="elevation-1"
+                loading="true"
+                loading-text="!!! Sorry for the delay. Fetching data ..... Please wait !!!"
             >
             </v-data-table>
         </v-card>
