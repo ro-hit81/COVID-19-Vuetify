@@ -1,10 +1,14 @@
 <template>
   <v-container id="dashboard" fluid tag="section" >
     <v-row>
+      <ProvinceTimeline />
+    </v-row>
+    <v-row>
       <LineChart />
       <MapDistrict />
       <TimelineChart />
     </v-row>
+
     <v-row class="mt-12">
       <GlobalTable />
     </v-row> 
@@ -16,13 +20,15 @@ import LineChart from '@/components/LineChart'
 import MapDistrict from '@/components/MapDistrict'
 import TimelineChart from '@/components/TimelineChart'
 import GlobalTable from '@//components/GlobalTable'
+import ProvinceTimeline from '@/components/ProvinceTimeline'
 
 export default {
   components: {
     LineChart: LineChart,
     MapDistrict: MapDistrict,
     TimelineChart: TimelineChart,
-    GlobalTable: GlobalTable
+    GlobalTable: GlobalTable,
+    ProvinceTimeline: ProvinceTimeline
   }
 }
 </script>
