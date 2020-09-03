@@ -2,13 +2,14 @@
   <v-container id="dashboard" fluid tag="section" >
     <v-row>
       <ProvinceTimeline />
+      <CoronaDensity/>
     </v-row>
+    <v-divider></v-divider>
     <v-row>
       <LineChart />
       <MapDistrict />
       <TimelineChart />
     </v-row>
-
     <v-row class="mt-12">
       <GlobalTable />
     </v-row> 
@@ -21,6 +22,7 @@ import MapDistrict from '@/components/MapDistrict'
 import TimelineChart from '@/components/TimelineChart'
 import GlobalTable from '@//components/GlobalTable'
 import ProvinceTimeline from '@/components/ProvinceTimeline'
+import CoronaDensity from '@/components/CoronaDensity'
 
 export default {
   components: {
@@ -28,7 +30,8 @@ export default {
     MapDistrict: MapDistrict,
     TimelineChart: TimelineChart,
     GlobalTable: GlobalTable,
-    ProvinceTimeline: ProvinceTimeline
+    ProvinceTimeline: ProvinceTimeline,
+    CoronaDensity: CoronaDensity
   }
 }
 </script>
