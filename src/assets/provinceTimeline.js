@@ -57,6 +57,13 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   const data_source = Object.values(group)
   date.unshift("Province")
   source.push(...[date].concat(data_source))
+  source[1].splice(0, 1, "Province 1")
+  source[2].splice(0, 1, "Province 2")
+  source[3].splice(0, 1, "Bagmati Pradesh")
+  source[4].splice(0, 1, "Gandaki Pradesh")
+  source[5].splice(0, 1, "Province 5")
+  source[6].splice(0, 1, "Karnali Pradesh")
+  source[7].splice(0, 1, "Sudurpashchim Pradesh")
   console.log(source)
 })
 
@@ -71,34 +78,135 @@ export default {
   },
   xAxis: {type: 'category'},
   yAxis: {gridIndex: 0},
-  grid: {top: '15%'},
+  grid: {
+    right: '5%',
+    bottom: '20%'
+  },
   series: [
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
-    {type: 'line', smooth: true, seriesLayoutBy: 'row'},
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      symbol: 'diamond',
+      symbolSize: 5,
+      lineStyle: {
+        color: '#4A148C',
+        width: 2
+      },
+      itemStyle: {
+        color: '#4A148C',
+      },
+    },
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      lineStyle: {
+        color: '#651FFF',
+        width: 2
+      },
+      itemStyle: {
+        color: '#651FFF',
+      },
+      symbol: 'diamond',
+      symbolSize: 5,
+    },
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      lineStyle: {
+        color: '#D50000',
+        width: 2
+      },
+      itemStyle: {
+        color: '#D50000',
+      },
+      symbol: 'diamond',
+      symbolSize: 5,
+    },
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      lineStyle: {
+        color: '#2979FF',
+        width: 2
+      },
+      itemStyle: {
+        color: '#2979FF',
+      },
+      symbol: 'diamond',
+      symbolSize: 5,
+    },
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      lineStyle: {
+        color: '#00E5FF',
+        width: 2
+      },
+      itemStyle: {
+        color: '#00E5FF',
+      },
+      symbol: 'diamond',
+      symbolSize: 5,
+    },
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      lineStyle: {
+        color: '#00E676',
+        width: 2
+      },
+      itemStyle: {
+        color: '#00E676',
+      },
+      symbol: 'diamond',
+      symbolSize: 5,
+    },
+    {
+      type: 'line',
+      smooth: true,
+      smoothMonotone: 'x',
+      seriesLayoutBy: 'row',
+      lineStyle: {
+        color: '#F57F17',
+        width: 2
+      },
+      itemStyle: {
+        color: '#F57F17',
+      },
+      symbol: 'diamond',
+      symbolSize: 5,
+    },
     // {
-    //     type: 'pie',
-    //     id: 'pie',
-    //     radius: '30%',
-    //     center: ['50%', '25%'],
-    //     label: {
-    //         formatter: '{b}: {@2020-01-24} ({d}%)'
-    //     },
-    //     encode: {
-    //         itemName: 'Province',
-    //         value: '2020-01-24',
-    //         tooltip: '2020-01-24'
-    //     }
+    //   type: 'pie',
+    //   id: 'pie',
+    //   radius: '30%',
+    //   center: ['50%', '25%'],
+    //   label: {
+    //       formatter: '{b}: {@2020-01-24} ({d}%)'
+    //   },
+    //   encode: {
+    //       itemName: 'Province',
+    //       value: '2020-01-24',
+    //       tooltip: '2020-01-24'
+    //   }
     // }
   ],
   dataZoom: [
     {
       type: 'inside',
-      start: 80,
+      start: 95,
       end: 100
     },
     {
