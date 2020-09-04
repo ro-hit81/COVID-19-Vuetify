@@ -11,8 +11,8 @@
 </template>
 
 <script>
-import Nepal_Stats from '@/components/Nepal_Stats'
-import ProvinceTimeline from '@/components/ProvinceTimeline'
+import Nepal_Stats from '@/components/nepalStat/Nepal_Stats'
+import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
 
 export default {
   components: {

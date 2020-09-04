@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import GlobalStats from '@/components/GlobalStats'
-import GlobalLists from '@/components/GlobalLists' 
+import GlobalStats from '@/components/globalStat/GlobalStats'
+import GlobalLists from '@/components/globalStat/GlobalLists' 
 
 export default {
   components: {

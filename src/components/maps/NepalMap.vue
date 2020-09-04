@@ -56,7 +56,7 @@
 import axios from 'axios'
 import DistrictData from '@/assets/District.json'
 import ProvinceData from '@/assets/Province.json'
-import infected_icon from '../assets/infected.png'
+import infected_icon from '../../assets/infected.png'
 
 
 // Importing leaflet & its library

@@ -12,8 +12,8 @@
 </template>
 
 <script>
-import NepalList from '@/components/NepalList'
-import NepalMap from '@/components/NepalMap'
+import NepalList from '@/components/maps/NepalList'
+import NepalMap from '@/components/maps/NepalMap'
 // import NewMap from '@/components/NewMap'
 
 export default {

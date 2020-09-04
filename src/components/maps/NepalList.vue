@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import DistrictList from '@/components/DistrictList'
-import ProvinceList from '@/components/ProvinceList'
+import DistrictList from '@/components/maps/DistrictList'
+import ProvinceList from '@/components/maps/ProvinceList'
 
 
 export default {

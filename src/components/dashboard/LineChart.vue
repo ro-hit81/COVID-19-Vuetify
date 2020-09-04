@@ -34,7 +34,7 @@
 import { mapGetters } from 'vuex'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/line'
-import lineChart from '../assets/lineChart'
+import lineChart from '../../assets/lineChart'
  
 export default {
   components: {

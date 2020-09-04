@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import timelineChart from '../assets/timelineChart'
+import timelineChart from '../../assets/timelineChart'
 
 import { mapGetters } from 'vuex'
 import ECharts from 'vue-echarts'

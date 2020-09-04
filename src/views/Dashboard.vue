@@ -16,11 +16,11 @@
 </template>
  
 <script>
-import LineChart from '@/components/LineChart'
-import MapDistrict from '@/components/MapDistrict'
-import TimelineChart from '@/components/TimelineChart'
-import GlobalTable from '@//components/GlobalTable'
-import ProvinceTimeline from '@/components/ProvinceTimeline'
+import LineChart from '@/components/dashboard/LineChart'
+import MapDistrict from '@/components/dashboard/MapDistrict'
+import TimelineChart from '@/components/dashboard/TimelineChart'
+import GlobalTable from '@//components/dashboard/GlobalTable'
+import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
 // import CoronaDensity from '@/components/CoronaDensity'
 
 export default {

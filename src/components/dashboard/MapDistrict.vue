@@ -24,13 +24,13 @@
 </template>
 
 <script>
-import mapDistrict from '../assets/mapDistrict'
+import mapDistrict from '../../assets/mapDistrict'
 import { mapGetters } from 'vuex'
 import ECharts from 'vue-echarts'
 import 'echarts/lib/chart/map'
 import 'echarts/lib/chart/scatter'
 import 'echarts/lib/chart/effectScatter'
-import NepalDistrict from '../assets/District.json'
+import NepalDistrict from '../../assets/District.json'
 
 ECharts.registerMap('NepalDistrict', NepalDistrict)
 export default {
