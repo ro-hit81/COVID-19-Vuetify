@@ -80,7 +80,8 @@ export default {
   yAxis: {gridIndex: 0},
   grid: {
     right: '5%',
-    bottom: '20%'
+    bottom: '20%',
+    top: '25%'
   },
   series: [
     {
@@ -188,20 +189,20 @@ export default {
       symbol: 'diamond',
       symbolSize: 5,
     },
-    // {
-    //   type: 'pie',
-    //   id: 'pie',
-    //   radius: '30%',
-    //   center: ['50%', '25%'],
-    //   label: {
-    //       formatter: '{b}: {@2020-01-24} ({d}%)'
-    //   },
-    //   encode: {
-    //       itemName: 'Province',
-    //       value: '2020-01-24',
-    //       tooltip: '2020-01-24'
-    //   }
-    // }
+    {
+      type: 'pie',
+      id: 'pie',
+      radius: '20%',
+      center: ['60%', '20%'],
+      label: {
+          formatter: '{b}: {@2020-01-24} ({d}%)'
+      },
+      encode: {
+          itemName: 'Province',
+          value: '2020-01-24',
+          tooltip: '2020-01-24'
+      }
+    }
   ],
   dataZoom: [
     {

@@ -110,7 +110,7 @@ export default {
             symbol: 'diamond',
             symbolSize: 3,
             itemStyle: {
-                color: '#000000',
+                color: '#C62828',
             },
             lineStyle: {
                 color: '#D32F2F',
