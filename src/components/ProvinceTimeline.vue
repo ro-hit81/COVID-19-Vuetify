@@ -85,7 +85,6 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   source[5].splice(0, 1, "Province 5")
   source[6].splice(0, 1, "Karnali Pradesh")
   source[7].splice(0, 1, "Sudurpashchim Pradesh")
-  console.log(source)
 })
 
 export default {
@@ -132,11 +131,11 @@ export default {
       smoothMonotone: 'x',
       seriesLayoutBy: 'row',
       lineStyle: {
-        color: '#9E9D24',
+        color: '#8E24AA',
         width: 2
       },
       itemStyle: {
-        color: '#9E9D24',
+        color: '#8E24AA',
       },
       symbol: 'diamond',
       symbolSize: 5,
@@ -220,7 +219,7 @@ export default {
       type: 'pie',
       id: 'pie',
       radius: '25%',
-      color: ['#4A148C', '#9E9D24', '#D50000', '#2979FF', '#00E5FF', '#00E676', '#F57F17'],
+      color: ['#FF1744', '#8E24AA', '#D50000', '#2979FF', '#00E5FF', '#00E676', '#F57F17'],
       center: ['50%', '22%'],
       label: {
           formatter: '{b}: {@2020-01-24} ({d}%)'
@@ -235,12 +234,10 @@ export default {
   dataZoom: [
     {
       type: 'inside',
-      start: 95,
-      end: 100
     },
     {
-      start: 0,
-      end:10,
+      start: 90,
+      end:100,
       backgroundColor: '#E0F7FA',
       dataBackround: {
         areaStyle: {
@@ -258,7 +255,7 @@ export default {
       }
     }
   ],
-  animationDuration: 5000
+  animationDuration: 2000
       }
     };
   },
