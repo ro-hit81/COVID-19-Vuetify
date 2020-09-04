@@ -6,17 +6,18 @@
     <Nepal-Stats />
   
     <v-divider></v-divider>
-    
+    <province-timeline/>
   </div>
 </template>
 
 <script>
 import Nepal_Stats from '@/components/Nepal_Stats'
+import ProvinceTimeline from '@/components/ProvinceTimeline'
 
 export default {
   components: {
     'Nepal-Stats': Nepal_Stats,
-
+    ProvinceTimeline
   },
     
 }

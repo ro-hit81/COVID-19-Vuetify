@@ -2,7 +2,7 @@
     <v-container class="mt-12">
         <v-divider></v-divider>
         <v-col  xs="12" sm="12" md="12">
-            <v-card color="cyan lighten-5" height="620" class="mb-5 pa-3 my-3">
+            <v-card color="cyan lighten-5" height="600" class="mb-5 pa-3 my-3">
                 <v-card-title>COVID-19 cases(Daily basis)</v-card-title>
                 <v-card-subtitle> Province wise</v-card-subtitle>
                 <v-chart
@@ -107,7 +107,7 @@ export default {
   yAxis: {gridIndex: 0},
   grid: {
     right: '10%',
-    bottom: '15%',
+    bottom: '20%',
     top: '30%'
   },
   series: [
@@ -221,7 +221,7 @@ export default {
       id: 'pie',
       radius: '25%',
       color: ['#4A148C', '#9E9D24', '#D50000', '#2979FF', '#00E5FF', '#00E676', '#F57F17'],
-      center: ['50%', '20%'],
+      center: ['50%', '22%'],
       label: {
           formatter: '{b}: {@2020-01-24} ({d}%)'
       },
