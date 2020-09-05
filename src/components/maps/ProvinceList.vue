@@ -1,5 +1,5 @@
 <template>
-    <v-expansion-panels inset focusable hover class="provinceList mt-3">
+    <v-expansion-panels inset focusable hover class="provinceList">
         <v-expansion-panel 
                     v-for="(Province, index) in Provinces" 
                     :key="index" 

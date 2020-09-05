@@ -1,11 +1,11 @@
 <template>
-    <v-col cols="12" xs="12" sm="12" md="9" lg="9">
-        <div class="map mt-3">
+    <v-col cols="12" xs="12" sm="12" md="" lg="9">
+        <div class="map">
             <l-map
                 :zoom= "zoom"
                 :center= "center"
                 :bounds= "bounds"
-                style= "z-index:0; height:75vh; background-color: #F3E5F5;"
+                style= "z-index:0; height:68vh; background-color: #F3E5F5;"
                 @update:zoom= "zoomUpdate"
                 @update:center= "centerUpdate"
                 :options="mapOptions"

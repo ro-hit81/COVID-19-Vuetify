@@ -1,5 +1,5 @@
 <template>
-        <v-expansion-panels inset focusable hover class="districtList mt-3">
+        <v-expansion-panels inset focusable hover class="districtList">
           <v-expansion-panel 
                         v-for="(NepalData, index) in NepalDatas" 
                         :key="index" 
