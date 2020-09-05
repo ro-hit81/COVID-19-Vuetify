@@ -80,10 +80,68 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
       }
   })
   coronaData.push(...groupingDistrict)
-  console.log(coronaData)
 })
 
 export default {
-    
+    components: {
+        LMap,
+        'l-choropleth-layer': ChoroplethLayer,
+        'l-info-control': InfoControl,
+        'l-reference-chart': ReferenceChart
+    },
+    data() {
+        return {
+            coronaData,
+            zoom: 7, 
+            center: L.latLng(28.4493819395240528, 84.09959913133743),
+            bounds: [],
+            DistrictJSON,
+            colorScale: ['#AED581',"#FFB74D", '#FF6D00', '#EF6C00','#F50057','FF0000'],
+            mapOptions: {
+                attributionControl: false
+            },
+            value: {
+                key: "infected",
+                metric: "people"
+            },
+            extraValues: [
+                {
+                    key: 'infected',
+                    metric: "people"
+                }
+            ]
+        }
+    },
+    methods: {
+        zoomUpdate(zoom) {
+            return this.zoom = zoom
+        },
+        centerUpdate(center) {
+            return this.center = center
+        },
+        latLng: function(lat, lng) {
+            return L.latLng(lat, lng)
+        }
+    },
+    mounted() {
+        this.$root.$on('clicked-district', (NepalData) => {
+            let polygon = L.polygon(NepalData.geometry.coordinates);
+            let bounds = polygon.getBounds();
+            let southWest = bounds.getSouthWest();
+            let northEast = bounds.getNorthEast();
+            let cSouthWest = L.latLng(southWest.lng, southWest.lat);
+            let cNortEast = L.latLng(northEast.lng, northEast.lat);
+            let newBounds = L.latLngBounds(cSouthWest, cNortEast);
+            this.bounds = newBounds
+        });
+    }
 }
 </script>
+
+<style>
+@import "~leaflet/dist/leaflet.css";
+
+.info span{
+    color:white;
+}
+</style>
