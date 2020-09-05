@@ -5,7 +5,7 @@
                 :zoom= "zoom"
                 :center= "center"
                 :bounds= "bounds"
-                style= "z-index:0; height:75vh; background-color: #64B5F6;"
+                style= "z-index:0; height:75vh; background-color: #F3E5F5;"
                 @update:zoom= "zoomUpdate"
                 @update:center= "centerUpdate"
                 :options="mapOptions"
@@ -20,7 +20,23 @@
                         :geojson="ProvinceJSON"
                         :colorScale="colorScale"
                 >
-
+                    <template slot-scope="props">
+                        <l-info-control 
+                            :item="props.currentItem"
+                            :unit="props.unit"
+                            title="Province"
+                            placeholder="Hover over district for more information !!!"
+                            position="topright"
+                        />
+                        <l-reference-chart 
+                            title="COVID-19 Infected Case"
+                            :colorScale="colorScale"
+                            :min="props.min"
+                            :max="props.max"
+                            position="bottomleft"
+                        />
+                        
+                    </template>
                 </l-choropleth-layer>
             </l-map>
         </div>
@@ -41,7 +57,7 @@
 import axios from 'axios'
 import L from 'leaflet'
 import {LMap} from 'vue2-leaflet'
-import {ChoroplethLayer} from 'vue-choropleth'
+import {ChoroplethLayer, InfoControl, ReferenceChart} from 'vue-choropleth'
 // import {demo} from '../../assets/demo'
 
 import ProvinceJSON from '@/assets/Province'
@@ -70,7 +86,9 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
 export default {
     components: {
         LMap,
-        'l-choropleth-layer': ChoroplethLayer
+        'l-choropleth-layer': ChoroplethLayer,
+        'l-info-control': InfoControl,
+        'l-reference-chart': ReferenceChart
     },
     data() {
         return {
@@ -79,7 +97,7 @@ export default {
             center: L.latLng(28.4493819395240528, 84.09959913133743),
             bounds: [],
             ProvinceJSON,
-            colorScale: ["#4A148C", "#2979FF", "#651FFF", '#558B2F', '#00C853', '#E65100', '#FFEE58'],
+            colorScale: ["#FFE0B2", '#FFCC80','#FFB74D','#FFA726', '#F57C00', '#EF6C00','#E65100'],
             mapOptions: {
                 attributionControl: false
             },
@@ -121,10 +139,14 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 @import "~leaflet/dist/leaflet.css";
 
 #map{
     height: 75vh;
+}
+
+.info span{
+    color:white;
 }
 </style>

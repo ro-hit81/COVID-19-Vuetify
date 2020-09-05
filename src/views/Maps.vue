@@ -3,7 +3,8 @@
     <h1 class="subheading grey--text">Maps</h1>
     <v-row>
       <NepalList />
-      <province-density />
+      <district-density />
+      <!-- <province-density /> -->
       <!-- <NepalMap /> -->
       <!-- <new-map /> -->
       
@@ -12,17 +13,17 @@
 </template>
 
 <script>
-import ProvinceDensity from '@/components/maps/ProvinceDensity'
+// import ProvinceDensity from '@/components/maps/ProvinceDensity'
 import NepalList from '@/components/maps/NepalList'
+import DistrictDensity from '@/components/maps/DistrictDensity'
 // import NepalMap from '@/components/maps/NepalMap'
-// import NewMap from '@/components/NewMap'
 
 export default {
   components: {
     NepalList: NepalList,
     // NepalMap: NepalMap,
-    // NewMap
-    ProvinceDensity
+    // ProvinceDensity,
+    DistrictDensity
   },
 
 }
