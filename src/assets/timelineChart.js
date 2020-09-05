@@ -151,5 +151,5 @@ export default {
       filterMode: 'filter',
     },
     animation: true,
-    animationDuration: 10000
+    animationDuration: 3000
   }

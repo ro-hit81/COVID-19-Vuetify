@@ -46,7 +46,7 @@ export default {
   timeline: {
     axisType: 'category',
     data: date,
-    autoPlay: false,
+    autoPlay: true,
     playInterval: 800,
     symbol:'diamond',
     symbolSize: 3,

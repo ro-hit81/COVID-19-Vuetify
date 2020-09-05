@@ -1,16 +1,24 @@
 <template>
   <v-container id="dashboard" fluid tag="section" >
     <v-row>
-      <LineChart />
-      <MapDistrict />
-      <TimelineChart />
+      <line-chart />
+      <map-district />
+      <timeline-chart />
     </v-row>
     <v-row class="mt-12">
-      <ProvinceTimeline />
+      <province-timeline />
       <!-- <CoronaDensity/> -->
     </v-row>
+    <v-row class="mt-10">
+      <v-col xs="12" sm="12" md="6" lg="6">
+        <province-density />
+      </v-col>
+      <v-col xs="12" sm="12" md="6" lg="6">
+        <district-density />
+      </v-col>
+    </v-row>
     <v-row class="mt-12">
-      <GlobalTable />
+      <global-table />
     </v-row>
   </v-container>
 </template>
@@ -21,15 +29,19 @@ import MapDistrict from '@/components/dashboard/MapDistrict'
 import TimelineChart from '@/components/dashboard/TimelineChart'
 import GlobalTable from '@//components/dashboard/GlobalTable'
 import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
+import DistrictDensity from '@/components/maps/DistrictDensity'
+import ProvinceDensity from '@/components/maps/ProvinceDensity'
 // import CoronaDensity from '@/components/CoronaDensity'
 
 export default {
   components: {
-    LineChart: LineChart,
-    MapDistrict: MapDistrict,
-    TimelineChart: TimelineChart,
-    GlobalTable: GlobalTable,
-    ProvinceTimeline: ProvinceTimeline,
+    LineChart,
+    MapDistrict,
+    TimelineChart,
+    GlobalTable,
+    ProvinceTimeline,
+    DistrictDensity,
+    ProvinceDensity
     // CoronaDensity: CoronaDensity
   }
 }

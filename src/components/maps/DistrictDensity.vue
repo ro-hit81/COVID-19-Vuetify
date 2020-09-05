@@ -1,45 +1,43 @@
 <template>
-    <v-col cols="12" xs="12" sm="12" md="" lg="9">
-        <div class="map">
-            <l-map
-                :zoom= "zoom"
-                :center= "center"
-                :bounds= "bounds"
-                style= "z-index:0; height:68vh; background-color: #F3E5F5;"
-                @update:zoom= "zoomUpdate"
-                @update:center= "centerUpdate"
-                :options="mapOptions"
+    <div class="map">
+        <l-map
+            :zoom= "zoom"
+            :center= "center"
+            :bounds= "bounds"
+            style= "z-index:0; height:68vh; background-color: #EEEEEE"
+            @update:zoom= "zoomUpdate"
+            @update:center= "centerUpdate"
+            :options="mapOptions"
+        >
+            <l-choropleth-layer
+                    :data="coronaData"
+                    titleKey="district"
+                    idKey="district_id"
+                    :value="value"
+                    :extraValues="extraValues"
+                    geojsonIdKey="DISTRICT_ID"
+                    :geojson="DistrictJSON"
+                    :colorScale="colorScale"
             >
-                <l-choropleth-layer
-                        :data="coronaData"
-                        titleKey="district"
-                        idKey="district_id"
-                        :value="value"
-                        :extraValues="extraValues"
-                        geojsonIdKey="DISTRICT_ID"
-                        :geojson="DistrictJSON"
+                <template slot-scope="props">
+                    <l-info-control 
+                        :item="props.currentItem"
+                        :unit="props.unit"
+                        title="District"
+                        placeholder="Hover over district for more information !!!"
+                        position="topright"
+                    />
+                    <l-reference-chart 
+                        title="COVID-19 Infected Case"
                         :colorScale="colorScale"
-                >
-                    <template slot-scope="props">
-                        <l-info-control 
-                            :item="props.currentItem"
-                            :unit="props.unit"
-                            title="District"
-                            placeholder="Hover over district for more information !!!"
-                            position="topright"
-                        />
-                        <l-reference-chart 
-                            title="COVID-19 Infected Case"
-                            :colorScale="colorScale"
-                            :min="props.min"
-                            :max="props.max"
-                            position="bottomleft"
-                        />
-                        
-                    </template>
-                </l-choropleth-layer>
-            </l-map>
-        </div>
+                        :min="props.min"
+                        :max="props.max"
+                        position="bottomleft"
+                    />
+                    
+                </template>
+            </l-choropleth-layer>
+        </l-map>
         <v-row class="text-center overline">
             <v-col>
                 <span class="font-weight-bold grey--text"> Current Zoom Level:</span>
@@ -50,7 +48,7 @@
                 <span class="font-weight-medium">{{center.lat}}&deg;, {{center.lng}}&deg;</span>
             </v-col>
         </v-row>
-    </v-col>
+    </div>
 </template>
 
 <script>

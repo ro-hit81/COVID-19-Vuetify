@@ -127,5 +127,5 @@ export default {
   dataZoom: {
     type: 'inside'
   },
-  animationDuration: 10000
+  animationDuration: 3000
 }

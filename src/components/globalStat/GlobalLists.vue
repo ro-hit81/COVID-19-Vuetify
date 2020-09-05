@@ -175,7 +175,6 @@
                 <v-col>
                     <v-text-field
                         label="Search Country or any statistical value"
-                        full-width="300"
                         color="deep-purple accent-2"
                         v-model="received"
                         clearable

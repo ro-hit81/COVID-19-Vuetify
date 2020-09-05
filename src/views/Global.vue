@@ -2,11 +2,11 @@
   <div class="global grey lighten-3">
     <h1 class="subheading grey--text">Global</h1>
     
-    <Global-Stats />
+    <global-stats />
     
     <h1 class="subheading grey--text">Stats</h1>
 
-    <Global-Lists />
+    <global-lists />
 
   </div>
 </template>
@@ -17,8 +17,8 @@ import GlobalLists from '@/components/globalStat/GlobalLists'
 
 export default {
   components: {
-    'Global-Stats' : GlobalStats,
-    'Global-Lists' : GlobalLists
+    GlobalStats,
+     GlobalLists
   },
 
 }
