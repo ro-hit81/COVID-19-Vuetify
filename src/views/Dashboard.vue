@@ -17,7 +17,7 @@
         <district-density />
       </v-col>
     </v-row>
-    <v-row class="mt-12">
+    <v-row>
       <global-table />
     </v-row>
   </v-container>
