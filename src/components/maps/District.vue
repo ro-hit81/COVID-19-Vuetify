@@ -2,6 +2,12 @@
     <v-container>
         <v-row>
             <v-col cols="12" xs="12" sm="12" md="2" lg="3" class="text-center">
+                <v-bottom-navigation :value="activeBtn" color="deep-purple" grow shift>
+                    <v-btn class="mx-auto">
+                        <span>DISTRICTS</span>
+                        <v-icon>mdi-alpha-d-circle-outline</v-icon>
+                    </v-btn>
+                </v-bottom-navigation>
                 <district-list />
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="9" lg="9">
@@ -23,7 +29,7 @@ export default {
     },
     data() {
         return {
-            
+            activeBtn: 1
         }
     }
 }
