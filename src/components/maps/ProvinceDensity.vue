@@ -25,7 +25,7 @@
                             :item="props.currentItem"
                             :unit="props.unit"
                             title="Province"
-                            placeholder="Hover over district for more information !!!"
+                            placeholder="Hover over Province for more information !!!"
                             position="topright"
                         />
                         <l-reference-chart 
