@@ -1,21 +1,34 @@
 <template>
   <v-container id="dashboard" fluid tag="section" >
     <v-row>
-      <line-chart />
-      <map-district />
-      <timeline-chart />
+      <v-row>
+        <h1 >
+          <span class="subheading grey--text mt-4">Interactive Charts </span>
+          <span class="subtitle-2 grey--text" > (Do not hesitate to zoom & slide.)</span>
+        </h1>
+      </v-row>
+      <v-row>
+        <line-chart />
+        <map-district />
+        <timeline-chart />
+      </v-row>
     </v-row>
     <v-row class="mt-12">
       <province-timeline />
       <!-- <CoronaDensity/> -->
     </v-row>
     <v-row class="mt-10">
-      <v-col xs="12" sm="12" md="6" lg="6">
-        <province-density />
-      </v-col>
-      <v-col xs="12" sm="12" md="6" lg="6">
-        <district-density />
-      </v-col>
+      <v-row>
+        <h1 class="subheading grey--text mt-4">Choropleth Map (Maps are one way binded on purpose)</h1>
+      </v-row>
+      <v-row>
+        <v-col xs="12" sm="12" md="6" lg="6">
+          <province-density />
+        </v-col>
+        <v-col xs="12" sm="12" md="6" lg="6">
+          <district-density />
+        </v-col>
+      </v-row>
     </v-row>
     <v-row>
       <global-table />
