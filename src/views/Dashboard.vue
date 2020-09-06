@@ -1,6 +1,6 @@
 <template>
   <v-container id="dashboard" fluid tag="section" >
-    <v-row>
+    <v-row class="mx-3">
       <v-row>
         <h1 >
           <span class="subheading grey--text mt-4">Interactive Charts </span>
@@ -24,10 +24,10 @@
         </h1>
       </v-row>
       <v-row>
-        <v-col xs="12" sm="12" md="6" lg="6">
+        <v-col cols ="12" xs="12" sm="12" md="6" lg="6">
           <province-density />
         </v-col>
-        <v-col xs="12" sm="12" md="6" lg="6">
+        <v-col cols="12" xs="12" sm="12" md="6" lg="6">
           <district-density />
         </v-col>
       </v-row>
