@@ -15,13 +15,12 @@
     </v-row>
     <v-row class="mt-12">
       <province-timeline />
-      <!-- <CoronaDensity/> -->
     </v-row>
     <v-row class="mt-10">
       <v-row>
         <h1>
           <span class="subheading grey--text mt-4">Choropleth Map </span>
-          <span class="subtitle-2 grey--text" > (Maps are one way binded on purpose)</span>
+          <span class="subtitle-2 grey--text" > (Maps are one way binded on purpose. Zoom & Pan Province map.)</span>
         </h1>
       </v-row>
       <v-row>

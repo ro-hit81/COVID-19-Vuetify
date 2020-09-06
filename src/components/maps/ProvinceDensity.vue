@@ -1,10 +1,10 @@
 <template>
-    <div class="map">
+    <v-card>
         <l-map
             :zoom= "zoom"
             :center= "center"
             :bounds= "bounds"
-            style= "z-index:0; height:68vh; background-color: #EEEEEE;"
+            style= "z-index:0; height:75vh; background-color: #EEEEEE;"
             @update:zoom= "zoomUpdate"
             @update:center= "centerUpdate"
             :options="mapOptions"
@@ -39,16 +39,16 @@
             </l-choropleth-layer>
         </l-map>
         <v-row class="text-center overline">
-            <v-col>
+            <v-col cols="4">
                 <span class="font-weight-bold grey--text"> Current Zoom Level:</span>
                 <span class="font-weight-medium"> {{zoom}}</span>
             </v-col>
-            <v-col>
+            <v-col cols="8">
                 <span class="font-weight-bold grey--text">Map Center: </span>
                 <span class="font-weight-medium">{{center.lat}}&deg;, {{center.lng}}&deg;</span>
             </v-col>
         </v-row>
-    </div>
+    </v-card>
     
 </template>
 
