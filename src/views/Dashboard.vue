@@ -19,7 +19,10 @@
     </v-row>
     <v-row class="mt-10">
       <v-row>
-        <h1 class="subheading grey--text mt-4">Choropleth Map (Maps are one way binded on purpose)</h1>
+        <h1>
+          <span class="subheading grey--text mt-4">Choropleth Map </span>
+          <span class="subtitle-2 grey--text" > (Maps are one way binded on purpose)</span>
+        </h1>
       </v-row>
       <v-row>
         <v-col xs="12" sm="12" md="6" lg="6">
@@ -44,7 +47,6 @@ import GlobalTable from '@//components/dashboard/GlobalTable'
 import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
 import DistrictDensity from '@/components/maps/DistrictDensity'
 import ProvinceDensity from '@/components/maps/ProvinceDensity'
-// import CoronaDensity from '@/components/CoronaDensity'
 
 export default {
   components: {
@@ -55,7 +57,6 @@ export default {
     ProvinceTimeline,
     DistrictDensity,
     ProvinceDensity
-    // CoronaDensity: CoronaDensity
   }
 }
 </script>

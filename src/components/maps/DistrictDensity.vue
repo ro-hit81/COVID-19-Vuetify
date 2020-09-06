@@ -91,7 +91,7 @@ export default {
         return {
             coronaData,
             zoom: 7, 
-            center: L.latLng(28.4493819395240528, 84.09959913133743),
+            center: L.latLng(28.53633199789687, 84.51942368483917),
             bounds: [],
             DistrictJSON,
             colorScale: ['#AED581',"#FFB74D", '#FF6D00', '#EF6C00','#F50057','FF0000'],
