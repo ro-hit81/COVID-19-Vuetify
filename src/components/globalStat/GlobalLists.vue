@@ -192,8 +192,7 @@
                 :search="received"
                 loading="true"
                 loading-text="!!! Sorry for the delay. Fetching data ..... Please wait !!!"
-            >
-            </v-data-table>
+            />
         </v-card>
     </v-container>
 </template>
@@ -206,17 +205,17 @@ export default {
         return{
             received: '',
             headers: [
-            {
-                text: 'Country',
-                align: 'start',
-                value: 'Country',
-            },
-            { text: 'Total Confirmed', value: 'TotalConfirmed' },
-            { text: 'New confirmed', value: 'NewConfirmed' },
-            { text: 'Total Recovered', value: 'TotalRecovered' },
-            { text: 'New Recovered', value: 'NewRecovered' },
-            { text: 'Total Deaths', value: 'TotalDeaths' },
-            { text: 'New Deaths', value: 'NewDeaths' },
+                {
+                    text: 'Country',
+                    align: 'start',
+                    value: 'Country',
+                },
+                { text: 'Total Confirmed', value: 'TotalConfirmed' },
+                { text: 'New confirmed', value: 'NewConfirmed' },
+                { text: 'Total Recovered', value: 'TotalRecovered' },
+                { text: 'New Recovered', value: 'NewRecovered' },
+                { text: 'Total Deaths', value: 'TotalDeaths' },
+                { text: 'New Deaths', value: 'NewDeaths' },
             ],
             country: []
         }
