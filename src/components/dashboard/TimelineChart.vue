@@ -1,6 +1,6 @@
 <template>
   <v-col cols="12" lg="4" md="4" sm="12" xs="12"  class="mb-12">
-    <v-card class="mt-9 card_hold ma-auto"  max-width="400" height="300" ripple rounded>
+    <v-card class="mt-9 card_hold mx-auto" height="300" ripple rounded>
       <v-card-subtitle>Nepal</v-card-subtitle>
       <v-card-subtitle>Nepal</v-card-subtitle>
       <v-card-subtitle>Nepal</v-card-subtitle>
@@ -17,8 +17,8 @@
         <span class="font-weight-bold">{{dateConvert.nepal_time}} GMT</span>  
       </v-card-actions>
     </v-card>
-    <v-sheet color="amber darken-3" max-width="380" height="210" class="sheet_hold mx-auto" elevation="4" rounded>
-      <v-chart :options="timelineChart"/>
+    <v-sheet color="amber darken-3" height="210" class="sheet_hold mx-3" elevation="4" rounded>
+      <v-chart :options="timelineChart" autoresize/>
     </v-sheet>
   </v-col>
 </template>
