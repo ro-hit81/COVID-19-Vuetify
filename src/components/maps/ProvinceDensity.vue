@@ -114,9 +114,11 @@ export default {
     },
     methods: {
         zoomUpdate(zoom) {
+            this.$root.$emit('province-zoom', zoom)
             return this.zoom = zoom
         },
         centerUpdate(center) {
+            this.$root.$emit('province-center', center)
             return this.center = center
         },
         latLng: function(lat, lng) {

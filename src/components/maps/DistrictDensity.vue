@@ -132,6 +132,12 @@ export default {
             let newBounds = L.latLngBounds(cSouthWest, cNortEast);
             this.bounds = newBounds
         });
+        this.$root.$on('province-zoom', (zoom)=> {
+            this.zoom = zoom
+        });
+        this.$root.$on('province-center', (center)=> {
+            this.center = center
+        });
     }
 }
 </script>
