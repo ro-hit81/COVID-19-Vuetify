@@ -1,5 +1,5 @@
 <template>
-    <v-container class="mt-12">
+    <v-container class="mt-4">
     <h1 class="subheading grey--text text-center">Top 10 COVID-19 Infected Countries</h1>
         <v-card class="mt-4">
             <v-data-table

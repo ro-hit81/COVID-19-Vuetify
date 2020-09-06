@@ -1,5 +1,5 @@
 <template>
-  <div class="maps">
+  <div class="maps mx-3">
     <h1 class="subheading grey--text">Maps</h1>
     <v-row>
       <district />

@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <div>
         <v-row>
             <v-col cols="12" xs="12" sm="12" md="2" lg="3" class="text-center">
                 <v-bottom-navigation :value="activeBtn" color="deep-purple" grow shift>
@@ -14,7 +14,7 @@
                 <district-density />
             </v-col>
         </v-row>
-    </v-container>
+    </div>
 </template>
 
 <script>

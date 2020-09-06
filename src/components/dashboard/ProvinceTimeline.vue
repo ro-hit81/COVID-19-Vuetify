@@ -1,19 +1,16 @@
 <template>
-    <v-container class="mt-12">
-        <v-divider></v-divider>
-        <v-col  xs="12" sm="12" md="12">
-            <v-card color="cyan lighten-5" height="600" class="mb-5 my-3">
-                <v-card-title>COVID-19 cases(Daily basis)</v-card-title>
-                <v-card-subtitle> Province wise</v-card-subtitle>
-                <v-chart
-                    :options="options"
-                    @updateAxisPointer="updateAxisPointer"
-                    autoresize
-                >
-                </v-chart>
-            </v-card>
-        </v-col>
-    </v-container>
+    <v-col  xs="12" sm="12" md="12">
+        <v-card color="cyan lighten-5" height="600" class="mb-12 mx-3 mt-12">
+            <v-card-title>COVID-19 cases(Daily basis)</v-card-title>
+            <v-card-subtitle> Province wise</v-card-subtitle>
+            <v-chart
+                :options="options"
+                @updateAxisPointer="updateAxisPointer"
+                autoresize
+            >
+            </v-chart>
+        </v-card>
+    </v-col>
 </template>
 
 <script>
@@ -107,7 +104,7 @@ export default {
   yAxis: {gridIndex: 0},
   grid: {
     bottom: '20%',
-    top: '30%'
+    top: '20%'
   },
   series: [
     {

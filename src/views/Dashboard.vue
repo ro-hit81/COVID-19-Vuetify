@@ -7,7 +7,7 @@
           <span class="subtitle-2 grey--text" > (Do not hesitate to zoom & slide.)</span>
         </h1>
       </v-row>
-      <v-row>
+      <v-row class="mx-3">
         <line-chart />
         <map-district />
         <timeline-chart />
@@ -16,11 +16,11 @@
     <v-row class="mt-12">
       <province-timeline />
     </v-row>
-    <v-row class="mt-10">
+    <v-row class="mt-10 mx-3">
       <v-row>
         <h1>
           <span class="subheading grey--text mt-4">Choropleth Map </span>
-          <span class="subtitle-2 grey--text" > (Maps are one way binded on purpose. Zoom & Pan Province map.)</span>
+          <span class="subtitle-2 grey--text" > (Maps are one way binded on purpose. Zoom & Pan Province map. )</span>
         </h1>
       </v-row>
       <v-row>
@@ -32,7 +32,7 @@
         </v-col>
       </v-row>
     </v-row>
-    <v-row>
+    <v-row class="mx-3">
       <global-table />
     </v-row>
   </v-container>
