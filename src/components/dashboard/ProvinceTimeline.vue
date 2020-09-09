@@ -217,7 +217,7 @@ export default {
       id: 'pie',
       radius: '30%',
       color: ['#FF1744', '#8E24AA', '#D50000', '#2979FF', '#00E5FF', '#00E676', '#F57F17'],
-      center: ['70%', '25%'],
+      center: ['50%', '25%'],
       label: {
           formatter: '{b}: {@2020-01-24} ({d}%)'
       },

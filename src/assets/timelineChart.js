@@ -27,7 +27,7 @@ export default {
       bottom: 'bottom'
     },
     legend: {
-        data: ['Total Cases', 'Total Recoveries', 'Total Deaths']
+        data: ['Cases', 'Recoveries', 'Deaths']
     },
     grid: {
         left: '15%',
@@ -104,7 +104,7 @@ export default {
     },
     series: [
         {
-            name: 'Total Cases',
+            name: 'Cases',
             data: totalCases,
             type: 'line',
             symbol: 'diamond',
@@ -118,7 +118,7 @@ export default {
             },
         },
         {
-            name: 'Total Recoveries',
+            name: 'Recoveries',
             data: totalRecoveries,
             type: 'line',
             symbol: 'diamond',
@@ -132,7 +132,7 @@ export default {
             },
         },
         {
-            name: 'Total Deaths',
+            name: 'Deaths',
             data: totalDeaths,
             type: 'line',
             symbol: 'diamond',
