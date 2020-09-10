@@ -1,9 +1,8 @@
 <template>
     <v-col  xs="12" sm="12" md="12">
         <v-card color="cyan lighten-5" height="600" class="mb-12 mx-3 mt-12">
-            <v-card-title>COVID-19 cases(Gender Chart)</v-card-title>
             <v-chart
-            
+                :options="options"
                 autoresize
             >
             </v-chart>
@@ -17,8 +16,9 @@ import axios from 'axios'
  
 const data = []
 const date = []
-let male, female, unknown = []
-
+const male = []
+const female = []
+const unknown = []
 axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
     const array = res.data
     const groups = array.reduce((groups, info) => {
@@ -69,15 +69,65 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
         }
         return acc
     }, {})
-    male= group.male
-    female = group.female
-    unknown = group.null
-    console.log(male, female, unknown)
+    male.push(...group.male)
+    female.push(...group.female)
+    unknown.push(...group.null)
 })
 
 export default {
     components: {
         'v-chart': Echarts,
+    },
+    data() {
+        return {
+            options: {
+                color: ['#003366', '#006699', '#4cabce'],
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['Female', 'Male', 'Unknown']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        axisTick: {
+                            show: false
+                        },
+                        data: date
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: 'Female',
+                        type: 'bar',
+                        barGap: 0,
+                        // label: labelOption,
+                        data: female
+                    },
+                    {
+                        name: 'Male',
+                        type: 'bar',
+                        // label: labelOption,
+                        data: male
+                    },
+                    {
+                        name: 'Unknown',
+                        type: 'bar',
+                        // label: labelOption,
+                        data: unknown
+                    }
+                ]
+            }
+        }
     }
 }
 </script>
