@@ -5,7 +5,7 @@
             <v-data-table
                 class="elevation-1"
                 :headers="headers"
-                :items="top10_countries"
+                :items="countriesWithIndex"
                 loading="true"
                 loading-text="!!! Sorry for the delay. Fetching data ..... Please wait !!!"
                 hide-default-footer
@@ -20,6 +20,7 @@ export default {
     data() {
         return {
             headers: [
+                {text: 'Sn', value: 'index'},
                 {
                     text: 'Country',
                     align: 'start',
@@ -38,6 +39,12 @@ export default {
         ...mapState([
             'top10_countries',
         ]),
+        countriesWithIndex() {
+            return this.top10_countries.map((countries, index) => ({
+                ...countries,
+                index: index + 1
+            }))
+        }
     },
     mounted() {
         this.$store.dispatch('loadGlobalStats')
