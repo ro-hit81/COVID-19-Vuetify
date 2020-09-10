@@ -74,6 +74,21 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
     unknown.push(...group.null)
 })
 
+var labelOption = {
+    show: true,
+    position: 'insideBottom',
+    distance: 15,
+    align: 'left',
+    verticalAlign:'middle',
+    rotate: 90,
+    formatter: '{c}  {name|{a}}',
+    fontSize: 10,
+    rich: {
+        name: {
+            textBorderColor: '#fff'
+        }
+    }
+};
 export default {
     components: {
         'v-chart': Echarts,
@@ -81,11 +96,47 @@ export default {
     data() {
         return {
             options: {
-                color: ['#003366', '#006699', '#4cabce'],
+                color: ['#6200EA', '#E91E63', '#00B0FF'],
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
                         type: 'shadow'
+                    }
+                },
+                toolbox: {
+                    show: true,
+                    orient: 'vertical',
+                    left: 'right',
+                    top: 'center',
+                    feature: {
+                        mark: {show: true},
+                        dataView: {
+                            show: true,
+                            readOnly: false,
+                            title: 'View data in table.',
+                            lang: ['Data view', 'close', 'refresh'],
+                            backgroundColor: '#B39DDB',
+                            buttonColor: '#512DA8'
+                        },
+                        magicType: {
+                            show: true,
+                            type: ['line', 'bar', 'stack', 'tiled'],
+                            title: {
+                                line: 'Line chart',
+                                bar: 'Bar Chart',
+                                stack: 'Stack Chart',
+                                tiled: 'Tiles'
+                            }
+                        },
+                        restore: {
+                            show: true,
+                            title: 'Reset setting'
+                        },
+                        saveAsImage: {
+                            show: true,
+                            title: 'Save as image',
+                            type: 'png'
+                        }
                     }
                 },
                 legend: {
@@ -107,25 +158,50 @@ export default {
                 ],
                 series: [
                     {
-                        name: 'Female',
-                        type: 'bar',
-                        barGap: 0,
-                        // label: labelOption,
-                        data: female
-                    },
-                    {
                         name: 'Male',
                         type: 'bar',
-                        // label: labelOption,
+                        barGap: 0,
+                        label: labelOption,
                         data: male
+                    },
+                    {
+                        name: 'Female',
+                        type: 'bar',
+                        label: labelOption,
+                        data: female
                     },
                     {
                         name: 'Unknown',
                         type: 'bar',
-                        // label: labelOption,
+                        label: labelOption,
                         data: unknown
                     }
-                ]
+                ],
+                dataZoom: [
+                    {
+                    type: 'inside',
+                    start: 95,
+                    end: 100
+                    },
+                    {
+                    start: 90,
+                    end:100,
+                    backgroundColor: '#E0F7FA',
+                    dataBackround: {
+                        areaStyle: {
+                            color: '#81D4FA',
+                        },
+                    },
+                    handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                    handleSize: '80%',
+                    handleStyle: {
+                        shadowBlur: 3,
+                        shadowColor: 'rgba(0, 0, 0, 0.6)',
+                        shadowOffsetX: 2,
+                        shadowOffsetY: 2
+                        }
+                    }
+                ],
             }
         }
     }
