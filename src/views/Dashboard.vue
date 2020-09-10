@@ -16,6 +16,9 @@
     <v-row class="mt-12">
       <province-timeline />
     </v-row>
+    <v-row>
+      <gender-chart />
+    </v-row>
     <v-row class="mt-10 mx-3">
       <v-row>
         <h1>
@@ -44,6 +47,7 @@ import MapDistrict from '@/components/dashboard/MapDistrict'
 import TimelineChart from '@/components/dashboard/TimelineChart'
 import GlobalTable from '@//components/dashboard/GlobalTable'
 import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
+import GenderChart from '@/components/dashboard/GenderChart'
 import DistrictDensity from '@/components/maps/DistrictDensity'
 import ProvinceDensity from '@/components/maps/ProvinceDensity'
 
@@ -55,7 +59,8 @@ export default {
     GlobalTable,
     ProvinceTimeline,
     DistrictDensity,
-    ProvinceDensity
+    ProvinceDensity,
+    GenderChart
   }
 }
 </script>

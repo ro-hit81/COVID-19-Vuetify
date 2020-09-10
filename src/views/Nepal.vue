@@ -18,7 +18,7 @@
 <script>
 import NepalStats from '@/components/nepalStat/Nepal_Stats'
 import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
-import GenderChart from '@/components/nepalStat/GenderChart'
+import GenderChart from '@/components/dashboard/GenderChart'
 export default {
   components: {
     NepalStats,
