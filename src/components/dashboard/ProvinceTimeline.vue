@@ -1,8 +1,7 @@
 <template>
-    <v-col  xs="12" sm="12" md="12">
-        <v-card color="cyan lighten-5" height="600" class="mb-12 mx-3 mt-12">
-            <v-card-title>COVID-19 cases(Daily basis)</v-card-title>
-            <v-card-subtitle> Province wise</v-card-subtitle>
+    <v-col  xs="12" sm="12" md="12" class="mt-8">
+      <h1 class="subheading grey--text">Covid 19 Case (Province wise)</h1>
+        <v-card color="cyan lighten-5" height="600" class="mb-12 mx-3 mt-5">
             <v-chart
                 :options="options"
                 @updateAxisPointer="updateAxisPointer"
@@ -103,7 +102,7 @@ export default {
   xAxis: {type: 'category'},
   yAxis: {gridIndex: 0},
   grid: {
-    bottom: '20%',
+    bottom: '10%',
     top: '20%'
   },
   series: [
@@ -217,7 +216,7 @@ export default {
       id: 'pie',
       radius: '30%',
       color: ['#FF1744', '#8E24AA', '#D50000', '#2979FF', '#00E5FF', '#00E676', '#F57F17'],
-      center: ['50%', '25%'],
+      center: ['50%', '28%'],
       label: {
           formatter: '{b}: {@2020-01-24} ({d}%)'
       },

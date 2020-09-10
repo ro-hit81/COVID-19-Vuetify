@@ -1,5 +1,5 @@
 <template>
-  <div class="grey lighten-3 nepal" >
+  <div class="grey lighten-4 nepal" >
     
     <h1 class="subheading grey--text" >Nepal</h1>
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="global grey lighten-3">
+  <div class="global grey lighten-4">
     <h1 class="subheading grey--text">Global</h1>
     
     <global-stats />
