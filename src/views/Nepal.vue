@@ -3,21 +3,27 @@
     
     <h1 class="subheading grey--text" >Nepal</h1>
 
-    <Nepal-Stats />
-  
+    <nepal-stats />
+
     <v-divider></v-divider>
-    <province-timeline/>
+
+    <province-timeline />
+
+    <v-divider></v-divider>
+
+    <gender-chart />
   </div>
 </template>
 
 <script>
-import Nepal_Stats from '@/components/nepalStat/Nepal_Stats'
+import NepalStats from '@/components/nepalStat/Nepal_Stats'
 import ProvinceTimeline from '@/components/dashboard/ProvinceTimeline'
-
+import GenderChart from '@/components/nepalStat/GenderChart'
 export default {
   components: {
-    'Nepal-Stats': Nepal_Stats,
-    ProvinceTimeline
+    NepalStats,
+    ProvinceTimeline,
+    GenderChart
   },
     
 }
