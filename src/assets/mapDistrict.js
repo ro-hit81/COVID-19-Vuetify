@@ -83,7 +83,8 @@ export default {
                     iconStyle: {
                         borderColor: '#76FF03',
                     },
-                }
+                },
+                pixelRatio: 10
             },
             restore: {
                 show: true,

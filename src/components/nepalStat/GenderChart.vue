@@ -105,9 +105,14 @@ export default {
                 },
                 toolbox: {
                     show: true,
+                    itemSize: 30,
                     orient: 'vertical',
-                    left: 'right',
+                    right: 25,
                     top: 'center',
+                    iconStyle: {
+                        borderColor: '#7C4DFF',
+                        borderWidth: 2
+                    },
                     feature: {
                         mark: {show: true},
                         dataView: {
@@ -134,8 +139,10 @@ export default {
                         },
                         saveAsImage: {
                             show: true,
+                            name: 'Male-Female Chart',
                             title: 'Save as image',
-                            type: 'png'
+                            type: 'png',
+                            pixelRatio: 10
                         }
                     }
                 },
