@@ -73,7 +73,7 @@ export default {
                             name: 'Choropleth Map',
                             title: 'Save as image',
                             type: 'png',
-                            pixelRatio: 100
+                            pixelRatio: 10
                         }
                     }
                 },
