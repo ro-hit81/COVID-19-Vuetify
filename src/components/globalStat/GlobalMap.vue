@@ -14,7 +14,7 @@
 import Echarts from 'vue-echarts'
 import 'echarts/lib/component/geo'
 import 'echarts/lib/chart/map'
-import HK from '../../assets/world.json'
+import World from '../../assets/world.json'
 import axios from 'axios'
 
 const data= []
@@ -31,7 +31,7 @@ axios.get('https://api.covid19api.com/summary').then((res) => {
 })
 
 
-Echarts.registerMap('HK', HK)
+Echarts.registerMap('World', World)
 
 export default {
     components: {
@@ -94,7 +94,7 @@ export default {
                     {
                         name: 'World Choropleth Map',
                         type: 'map',
-                        mapType: 'HK', 
+                        mapType: 'World', 
                         roam: true,
                         label: {
                             show: false
