@@ -28,7 +28,6 @@ axios.get('https://api.covid19api.com/summary').then((res) => {
         }
     })
     data.push(...group)
-    console.log(group)
 })
 
 
