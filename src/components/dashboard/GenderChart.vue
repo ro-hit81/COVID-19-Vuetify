@@ -118,9 +118,9 @@ export default {
                         mark: {show: true},
                         dataView: {
                             show: true,
-                            readOnly: false,
+                            readOnly: true,
                             title: 'View data in table.',
-                            lang: ['Data view', 'close', 'refresh'],
+                            lang: ['Data view', 'close'],
                             backgroundColor: '#B39DDB',
                             buttonColor: '#512DA8'
                         },
