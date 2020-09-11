@@ -12,6 +12,7 @@
     <v-divider></v-divider>
 
     <gender-chart />
+    
   </div>
 </template>
 
@@ -23,7 +24,7 @@ export default {
   components: {
     NepalStats,
     ProvinceTimeline,
-    GenderChart
+    GenderChart,
   },
     
 }
