@@ -10,9 +10,9 @@
             :options="mapOptions"
         >
             <l-choropleth-layer
-                    :data="coronaData"
-                    titleKey="district"
-                    idKey="district_id"
+                    :data="newData"
+                    titleKey="DISTRICT"
+                    idKey="DISTRICT_ID"
                     :value="value"
                     :extraValues="extraValues"
                     geojsonIdKey="DISTRICT_ID"
@@ -60,6 +60,7 @@ import {ChoroplethLayer, InfoControl, ReferenceChart} from 'vue-choropleth'
 import DistrictJSON from '@/assets/District'
 
 const coronaData = []
+const newData =[]
 axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   const array = res.data
   const groups= array.reduce((acc, arr) => {
@@ -78,7 +79,15 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
       }
   })
   coronaData.push(...groupingDistrict)
+  for(let i =0; i<DistrictJSON.features.length; i++) {
+    const properties = DistrictJSON.features[i].properties
+    newData.push({
+        ...properties,
+        ...coronaData.find((item) => item.district_id === properties.DISTRICT_ID)
+        })
+    }
 })
+
 
 export default {
     components: {
@@ -89,7 +98,7 @@ export default {
     },
     data() {
         return {
-            coronaData,
+            newData,
             zoom: 7, 
             center: L.latLng(28.53633199789687, 84.51942368483917),
             bounds: [],
@@ -104,8 +113,8 @@ export default {
             },
             extraValues: [
                 {
-                    key: 'infected',
-                    metric: "people"
+                    key: "PR_NAME",
+                    metric: ''
                 }
             ]
         }

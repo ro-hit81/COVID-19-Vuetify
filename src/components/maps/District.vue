@@ -11,7 +11,8 @@
                 <district-list />
             </v-col>
             <v-col cols="12" xs="12" sm="12" md="9" lg="9">
-                <district-density />
+                <!-- <district-density /> -->
+                <nepal-map />
             </v-col>
         </v-row>
     </div>
@@ -19,13 +20,15 @@
 
 <script>
 import DistrictList from '@/components/maps/DistrictList'
-import DistrictDensity from '@/components/maps/DistrictDensity'
+// import DistrictDensity from '@/components/maps/DistrictDensity'
+import NepalMap from '@/components/maps/NepalMap'
 
 
 export default {
     components: {
         DistrictList,
-        DistrictDensity
+        // DistrictDensity,
+        NepalMap
     },
     data() {
         return {

@@ -10,8 +10,8 @@
             :options="mapOptions"
         >
             <l-choropleth-layer
-                    :data="coronaData"
-                    titleKey="province"
+                    :data="newData"
+                    titleKey="PR_NAME"
                     idKey="province_id"
                     :value="value"
                     :extraValues="extraValues"
@@ -62,6 +62,7 @@ import {ChoroplethLayer, InfoControl, ReferenceChart} from 'vue-choropleth'
 import ProvinceJSON from '@/assets/Province'
 
 const coronaData = []
+const newData = []
 axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   const array = res.data
   const groups= array.reduce((acc, arr) => {
@@ -80,6 +81,13 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
       }
   })
   coronaData.push(...groupingProvince)
+  for(let i =0; i<ProvinceJSON.features.length; i++) {
+    const properties = ProvinceJSON.features[i].properties
+    newData.push({
+        ...properties,
+        ...coronaData.find((item) => item.province_id === properties.PROVINCE)
+        })
+    }
 })
 
 export default {
@@ -91,7 +99,7 @@ export default {
     },
     data() {
         return {
-            coronaData,
+            newData,
             zoom: 7, 
             center: L.latLng(28.53633199789687, 84.51942368483917),
             bounds: [],
@@ -105,10 +113,6 @@ export default {
                 metric: "people"
             },
             extraValues: [
-                {
-                    key: 'infected',
-                    metric: "people"
-                }
             ]
         }
     },

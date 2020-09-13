@@ -1,5 +1,5 @@
 <template>
-    <v-col cols="12" xs="12" sm="12" md="9" lg="9">      
+    <v-col>      
         <div class="map mt-3">
           <l-map
             :zoom= "zoom"
@@ -18,7 +18,7 @@
                       :url="tileProvider.url"
                       :attribution="tileProvider.attribution" 
                       layer-type="base" />
-            <l-marker-cluster>
+            <!-- <l-marker-cluster>
               <l-marker 
                     :key="CoronaData.id" 
                     v-for="CoronaData in CoronaDatas" 
@@ -26,7 +26,7 @@
                     >
                     <l-icon :icon-size="iconSize" :icon-url="icon"></l-icon>
                     </l-marker>
-            </l-marker-cluster>
+            </l-marker-cluster> -->
             <l-control-layers position="bottomright"/>
             <l-layer-group>
                  <l-layer-group layer-type="overlay" name="Province" :visible="true">
@@ -56,26 +56,43 @@
 import axios from 'axios'
 import DistrictData from '@/assets/District.json'
 import ProvinceData from '@/assets/Province.json'
-import infected_icon from '../../assets/infected.png'
-
-
-// Importing leaflet & its library
 
 import L from 'leaflet'
-import { LMap, LTileLayer, LGeoJson, LMarker, LControlLayers, LIcon, LLayerGroup} from 'vue2-leaflet';
+import { LMap, LTileLayer, LGeoJson, LControlLayers, LLayerGroup} from 'vue2-leaflet';
 
-// Importing MarkerCluster
-
-import Vue2LeafletMarkerCluster from 'vue2-leaflet-markercluster'
+let newData = JSON.parse(JSON.stringify(DistrictData))
+const coronaData = []
+axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
+  const array = res.data
+  const groups= array.reduce((acc, arr) => {
+      const district = arr.district
+      if(!acc[district]) {
+          acc[district]= []
+      }
+      acc[district].push(arr)
+      return acc
+  }, {})
+  const groupingDistrict = Object.keys(groups).map((district) => {
+      return {
+          district: district,
+          district_id: parseInt(district),
+          infected: groups[district].length
+      }
+  })
+  coronaData.push(...groupingDistrict)
+  for(let i of newData.features) {
+      i.properties.infected = coronaData.find((item) => item.district_id ===i.properties.DISTRICT_ID).infected
+  }
+  console.log(newData)
+})
 
 export default {
     data (){
         return {
-            CoronaDatas:[],
             zoom: 7,
             center: L.latLng(28.197842, 84.528289),
             bounds: [],
-            icon: infected_icon,
+            // icon: infected_icon,
             iconSize: [70, 70],
             tileProviders: [
                 {
@@ -111,11 +128,11 @@ export default {
         LMap,
         LTileLayer,
         LGeoJson,
-        LMarker,
+        // LMarker,
         LControlLayers,
         LLayerGroup,
-        LIcon,
-        'l-marker-cluster': Vue2LeafletMarkerCluster
+        // LIcon,
+        // 'l-marker-cluster': Vue2LeafletMarkerCluster
     },
     methods: {
         zoomUpdated(zoom){
@@ -132,7 +149,7 @@ export default {
         districtStyleFunction() {
             return () => {
                 return {
-                    weight: 0.5,
+                    weight: 1,
                     color: '#64DD17',
                     opacity: 1,
                     fillColor: "none",
@@ -143,7 +160,7 @@ export default {
         provinceStyleFunction() {
             return () => {
                 return {
-                    weight: 1,
+                    weight: 2,
                     color: "#D50000",
                     fillColor: "none",
                     fillOpacity:0
