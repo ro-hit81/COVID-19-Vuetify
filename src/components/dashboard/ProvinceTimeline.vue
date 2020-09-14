@@ -1,6 +1,6 @@
 <template>
     <v-col  xs="12" sm="12" md="12" class="mt-8">
-      <h1 class="subheading grey--text">Covid 19 Case (Province wise)</h1>
+      <h1 class="subheading grey--text">Covid 19 Case (Province wise) <span class="subtitle-2 grey--text" > (Use data slider below or zoom directly.)</span></h1>
         <v-card color="cyan lighten-5" height="650" class="mb-12 mx-3 mt-5">
             <v-chart
                 :options="options"

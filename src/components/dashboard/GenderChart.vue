@@ -97,7 +97,7 @@ export default {
     data() {
         return {
             options: {
-                color: ['#6200EA', '#E91E63', '#00B0FF'],
+                color: ['#7C4DFF', '#F06292', '#00B0FF'],
                 tooltip: {
                     trigger: 'axis',
                     axisPointer: {
@@ -148,7 +148,7 @@ export default {
                     }
                 },
                 legend: {
-                    data: ['Female', 'Male', 'Unknown']
+                    data: ['Female', 'Male', 'Unspecified']
                 },
                 xAxis: [
                     {
@@ -179,7 +179,7 @@ export default {
                         data: female
                     },
                     {
-                        name: 'Unknown',
+                        name: 'Unspecified',
                         type: 'bar',
                         label: labelOption,
                         data: unknown
@@ -188,11 +188,11 @@ export default {
                 dataZoom: [
                     {
                     type: 'inside',
-                    start: 95,
+                    start: 97,
                     end: 100
                     },
                     {
-                    start: 90,
+                    start: 95,
                     end:100,
                     backgroundColor: '#FFF3E0',
                     dataBackround: {
