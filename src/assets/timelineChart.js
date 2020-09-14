@@ -150,7 +150,9 @@ export default {
     dataZoom: {
       type: 'inside',
       filterMode: 'filter',
+      start: 50,
+      end: 100
     },
     animation: true,
-    animationDuration: 3000
+    animationDuration: 1500
   }

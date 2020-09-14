@@ -44,6 +44,10 @@ export default {
     },
     left: 'center'
   },
+  grid: {
+    left: '15%',
+    right: '5%',
+  },
   tooltip: {
     trigger: 'axis',
     axisPointer: {
@@ -57,7 +61,7 @@ export default {
       saveAsImage: {
         type: 'png',
         title: 'save as image',
-        name: 'Multiple Line Chart',
+        name: 'Line Chart',
         excludeComponents: ['toolbox'],
         backgroundColor: '#FF6F00',
         emphasis: {
@@ -126,7 +130,9 @@ export default {
     },
   }],
   dataZoom: {
-    type: 'inside'
+    type: 'inside',
+    start: 50,
+    end: 100
   },
-  animationDuration: 3000
+  animationDuration: 1500
 }

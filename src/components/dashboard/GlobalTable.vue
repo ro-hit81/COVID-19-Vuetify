@@ -3,7 +3,7 @@
     <h1 class="subheading grey--text text-center">Top 10 COVID-19 Infected Countries</h1>
         <v-card class="mt-4">
             <v-data-table
-                class="elevation-1"
+                class="elevation-2"
                 :headers="headers"
                 :items="countriesWithIndex"
                 loading="true"

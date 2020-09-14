@@ -33,7 +33,7 @@
                   <l-geo-json :geojson="provinceJson" :options-style="provinceStyleFunction"/>
                 </l-layer-group>
                 <l-layer-group layer-type="overlay" name="District" :visible="true">
-                  <l-geo-json :geojson="districtJson" :options-style="districtStyleFunction"/>
+                  <l-geo-json :geojson="districtJson" :options="options" :options-style="districtStyleFunction"/>
                 </l-layer-group>
             </l-layer-group>
           </l-map>
@@ -83,12 +83,12 @@ axios.get('https://data.nepalcorona.info/api/v1/covid').then((res) => {
   for(let i of newData.features) {
       i.properties.infected = coronaData.find((item) => item.district_id ===i.properties.DISTRICT_ID).infected
   }
-  console.log(newData)
 })
 
 export default {
     data (){
         return {
+            newData,
             zoom: 7,
             center: L.latLng(28.197842, 84.528289),
             bounds: [],
@@ -122,6 +122,7 @@ export default {
             ],
             districtJson: null,
             provinceJson: null,
+            getColor: null,
         }
     },
     components: {
@@ -146,14 +147,29 @@ export default {
         },
     },
     computed: {
+        options() {
+            return {
+                onEachFeature: this.onEachFeatureFunction
+            }
+        },
+        onEachFeatureFunction() {
+            return (feature, layer) => {
+                // console.log(feature, layer)
+                if(feature.properties.DISTRICT_ID>30) {
+                    layer.options.fillColor="#D50000"
+                }
+            
+            }
+        },
         districtStyleFunction() {
+            const fillColor = this.getColor
             return () => {
                 return {
                     weight: 1,
                     color: '#64DD17',
                     opacity: 1,
-                    fillColor: "none",
-                    fillOpacity: 0
+                    fillColor: fillColor,
+                    fillOpacity: 0.8
                 };
             }
         },
@@ -169,7 +185,7 @@ export default {
         }
     },
     created() {
-        this.districtJson = DistrictData
+        this.districtJson = newData && newData
         this.provinceJson = ProvinceData
         axios.get('https://data.nepalcorona.info/api/v1/covid').then((res)=> {
             this.CoronaDatas = res.data
