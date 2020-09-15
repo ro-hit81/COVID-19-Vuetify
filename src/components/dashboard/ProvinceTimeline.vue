@@ -96,6 +96,32 @@ export default {
       trigger: 'axis',
       showContent: false
   },
+   toolbox: {
+    show: true,
+    itemSize: 30,
+    orient: 'vertical',
+    right: 20,
+    itemGap: 15,
+    top: 'center',
+    iconStyle: {
+        borderColor: '#7C4DFF',
+        borderWidth: 2
+    },
+    feature: {
+        mark: {show: true},
+        restore: {
+            show: true,
+            title: 'Reset setting'
+        },
+        saveAsImage: {
+            show: true,
+            name: 'Province Timeline Chart',
+            title: 'Save as image',
+            type: 'png',
+            pixelRatio: 15
+        }
+    }
+},
   dataset: {
       source: source
   },

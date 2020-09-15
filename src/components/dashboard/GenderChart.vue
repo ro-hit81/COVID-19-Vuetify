@@ -110,6 +110,7 @@ export default {
                     orient: 'vertical',
                     right: 25,
                     top: 'center',
+                    itemGap: 20,
                     iconStyle: {
                         borderColor: '#7C4DFF',
                         borderWidth: 2
