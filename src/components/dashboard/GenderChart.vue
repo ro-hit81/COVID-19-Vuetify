@@ -148,7 +148,7 @@ export default {
                     }
                 },
                 legend: {
-                    data: ['Female', 'Male', 'Unspecified']
+                    data: ['Female', 'Male', 'Undefined']
                 },
                 xAxis: [
                     {
@@ -179,7 +179,7 @@ export default {
                         data: female
                     },
                     {
-                        name: 'Unspecified',
+                        name: 'Undefined',
                         type: 'bar',
                         label: labelOption,
                         data: unknown
