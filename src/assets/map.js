@@ -47,7 +47,7 @@ export default {
     axisType: 'category',
     data: date,
     autoPlay: true,
-    playInterval: 400,
+    playInterval: 300,
     symbol:'diamond',
     symbolSize: 3,
     itemStyle: {
